@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
 
-function Margaritas() {
+function Martinis() {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getMargs = async () => {
+    const getMartinis = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=martini');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -18,12 +18,12 @@ function Margaritas() {
     }
 
     useEffect(() => {
-        getMargs();
+        getMartinis();
     }, []);
-    
+
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>types of margaritas:</Text>
+            <Text style={styles.header}>types of martinis:</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
@@ -32,8 +32,8 @@ function Margaritas() {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <View>
-                            <Text>{index + 1}. { item.strDrink }</Text>
-                            <Image style={styles.img} source={{uri: item.strDrinkThumb}} key={index}/>
+                            <Text>{index + 1}. {item.strDrink}</Text>
+                            <Image style={styles.img} source={{ uri: item.strDrinkThumb }} key={index} />
                         </View>
                     )}
                 />
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = Margaritas;
+module.exports = Martinis;
