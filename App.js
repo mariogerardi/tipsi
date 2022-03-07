@@ -1,23 +1,28 @@
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import Margaritas from './components/landingtabs/Margarita';
 
-export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>This is just the beginning...</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+function App() {
+	return (
+		<SafeAreaView style={styles.container}>
+			<Text style={styles.logo}>tipsi</Text>
+            <Margaritas />
+			<StatusBar style="auto" />
+		</SafeAreaView>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#CACACA",
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  text: {
-    fontSize: 50
-  }
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+	},
+	logo: {
+		fontSize: 45,
+	}
 });
+
+export default App;
