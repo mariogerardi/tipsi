@@ -8,7 +8,6 @@ function App() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.logo}>tipsi</Text>
-            <Margaritas />
             <Martini />
 			<StatusBar style="auto" />
 		</SafeAreaView>

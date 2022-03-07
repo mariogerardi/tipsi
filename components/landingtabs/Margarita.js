@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     img: {
-        height: 50,
-        width: 50
+        height: 125,
+        width: 125
     }
 });
 

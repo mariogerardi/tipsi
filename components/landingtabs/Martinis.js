@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-web';
 
 function Martinis() {
     const [isLoading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ function Martinis() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>types of martinis:</Text>
+            <Text style={styles.header}>martini monday</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
@@ -31,9 +32,9 @@ function Martinis() {
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <View>
-                            <Text>{index + 1}. {item.strDrink}</Text>
+                        <View style={styles.drinkbox}>
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }} key={index} />
+                            <Text style={styles.name}>{item.strDrink}</Text>
                         </View>
                     )}
                 />
@@ -44,25 +45,40 @@ function Martinis() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 3,
+        height: "30%",
         backgroundColor: '#94b4d4',
         alignItems: 'flex-start',
     },
     header: {
-        marginTop: 5,
-        marginLeft: 20,
         color: "#000",
         fontSize: 30,
+        position: 'relative',
+        top: 12,
+        left: 45,
+        zIndex: 1,
     },
     list: {
+        color: "#000",
+        backgroundColor: "white",
+        fontSize: 30,
         marginTop: 5,
         marginLeft: 20,
-        color: "#000",
-        fontSize: 30,
+        borderTopLeftRadius: 30,
+        borderBottomLeftRadius: 30,
+    },
+    drinkbox: {
+        maxWidth: 125,
+        marginTop: 15,
+        marginLeft: 15,
     },
     img: {
-        height: 50,
-        width: 50
+        height: 125,
+        width: 125,
+        borderRadius: 20
+    },
+    name: {
+        fontSize: 16,
+        marginTop: 5
     }
 });
 
