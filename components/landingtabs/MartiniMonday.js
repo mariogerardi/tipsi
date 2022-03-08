@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-web';
 
 function Martinis() {
     const [isLoading, setLoading] = useState(true);
@@ -22,6 +21,12 @@ function Martinis() {
         getMartinis();
     }, []);
 
+    function emptyIngredient(props) {
+        if (props) {
+            return ", " + props;
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>martini monday</Text>
@@ -33,8 +38,25 @@ function Martinis() {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <View style={styles.drinkbox}>
-                            <Image style={styles.img} source={{ uri: item.strDrinkThumb }} key={index} />
+                            <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                             <Text style={styles.name}>{item.strDrink}</Text>
+                            <Text style={styles.ingredients}>
+                                {item.strIngredient1}
+                                {emptyIngredient(item.strIngredient2)}
+                                {emptyIngredient(item.strIngredient3)}
+                                {emptyIngredient(item.strIngredient4)}
+                                {emptyIngredient(item.strIngredient5)}
+                                {emptyIngredient(item.strIngredient6)}
+                                {emptyIngredient(item.strIngredient7)}
+                                {emptyIngredient(item.strIngredient8)}
+                                {emptyIngredient(item.strIngredient9)}
+                                {emptyIngredient(item.strIngredient10)}
+                                {emptyIngredient(item.strIngredient11)}
+                                {emptyIngredient(item.strIngredient12)}
+                                {emptyIngredient(item.strIngredient13)}
+                                {emptyIngredient(item.strIngredient14)}
+                                {emptyIngredient(item.strIngredient15)}
+                            </Text>
                         </View>
                     )}
                 />
@@ -45,7 +67,7 @@ function Martinis() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "30%",
+        height: "45%",
         backgroundColor: '#94b4d4',
         alignItems: 'flex-start',
     },
@@ -78,6 +100,10 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 16,
+        marginTop: 5
+    },
+    ingredients: {
+        fontSize: 14,
         marginTop: 5
     }
 });

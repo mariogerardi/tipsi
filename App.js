@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import Margaritas from './components/landingtabs/Margarita';
-import Martini from './components/landingtabs/Martinis';
+import COTD from './components/landingtabs/COTD';
+import Martini from './components/landingtabs/MartiniMonday';
+import Tequila from './components/landingtabs/TequilaTuesday';
 
 function App() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.logo}>tipsi</Text>
             <Martini />
+            <COTD />
+            <Tequila />
 			<StatusBar style="auto" />
 		</SafeAreaView>
 	);
