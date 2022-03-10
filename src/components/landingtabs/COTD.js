@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, Pressable, FlatList, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { withOrientation } from 'react-navigation';
 
 function COTD() {
 
@@ -34,6 +36,8 @@ function COTD() {
             return "...";
         }
     }
+
+    const navigation = useNavigation(); 
 
     const [loaded] = useFonts({
         PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
@@ -84,11 +88,11 @@ function COTD() {
 const styles = StyleSheet.create({
     container: {
         height: 475,
-        backgroundColor: '#EFA00B',
+        backgroundColor: '#101316',
         alignItems: 'flex-end',
     },
     header: {
-        color: "#000",
+        color: "#eee",
         fontSize: 35,
         textAlign: 'center',
         position: 'relative',
@@ -98,50 +102,57 @@ const styles = StyleSheet.create({
         fontFamily: 'PrataRegular',
     },
     list: {
-        color: "black",
-        backgroundColor: "white",
+        backgroundColor: "#345",
         fontSize: 30,
         marginTop: 5,
         marginRight: 20,
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
+        borderColor: 'white',
+        borderTopWidth: .5,
+        borderRightWidth: .5,
+        borderBottomWidth: .5,
     },
     drinkbox: {
         alignItems: "flex-start",
         minWidth: "96%",
         marginTop: 15,
-        marginLeft: 15
+        marginLeft: 15,
     },
     img: {
-        height: 200,
+        height: 250,
         width: '95%',
-        borderRadius: 10,
+        borderRadius: 5,
     },
     name: {
-        fontSize: 25,
-        marginTop: 5
+        fontSize: 26,
+        marginTop: 8,
+        fontFamily: 'PrataRegular',
+        color: 'white',
     },
     ingredients: {
         fontSize: 14,
-        marginTop: 5
+        color: 'white',
+        marginTop: 0,
     },
     viewButton: {
-        width: 325,
+        width: 155,
         marginVertical: 5,
         paddingVertical: 10,
         backgroundColor: '#0275d8',
         borderRadius: 5,
         position: 'absolute',
-        bottom: -145,
+        top: 350,
+        left: 170,
     },
     addButton: {
-        width: 325,
+        width: 155,
         marginVertical: 5,
         paddingVertical: 10,
         backgroundColor: '#28a745',
         borderRadius: 5,
         position: 'absolute',
-        bottom: -100,
+        top: 350,
     },
     buttonText: {
         textAlign: 'center',

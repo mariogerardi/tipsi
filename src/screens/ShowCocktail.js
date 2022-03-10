@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import Nav from '../components/Nav';
 import { useFonts } from 'expo-font';
 
 function Cocktail({route}) {
@@ -45,7 +46,7 @@ function Cocktail({route}) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.header}>{route.params.name}</Text>
+            <Nav />
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     style={styles.list}
@@ -53,6 +54,7 @@ function Cocktail({route}) {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <View style={styles.drinkbox}>
+                            <Text style={styles.header}>{route.params.name}</Text>
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                             <Text style={styles.ingredients}>
                                 {emptyMeasurement(item.strMeasure1)}{emptyIngredient(item.strIngredient1)}
@@ -88,15 +90,14 @@ function Cocktail({route}) {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        backgroundColor: '#94b4d4',
+        backgroundColor: '#101316',
         alignItems: 'center',
     },
     header: {
         color: "#000",
-        fontSize: 45,
+        fontSize: 28,
+        alignSelf: 'center',
         textAlign: 'center',
-        position: 'relative',
-        top: 26,
         zIndex: 1,
         fontFamily: 'PrataRegular',
     },
@@ -104,32 +105,33 @@ const styles = StyleSheet.create({
         color: "black",
         backgroundColor: "white",
         fontSize: 30,
-        margin: 10,
-        borderRadius: 20,
+        marginVertical: 10,
+        borderRadius: 20
     },
     drinkbox: {
         alignItems: "flex-start",
-        width: 340,
-        marginTop: 15,
-        marginLeft: 15
+        width: 350,
+        marginTop: 10,
     },
     img: {
-        height: 200,
-        width: '95%',
-        borderRadius: 20
+        height: 350,
+        width: '100%',
+        borderRadius: 0
     },
     name: {
         fontSize: 20,
         marginTop: 5
     },
     ingredients: {
-        fontSize: 20,
+        fontSize: 15,
         marginTop: 5,
+        marginHorizontal: 8,
         fontStyle: 'italic',
     },
     instructions: {
-        fontSize: 18,
+        fontSize: 15,
         fontStyle: 'italic',
+        marginHorizontal: 8,
         marginRight: 15,
     }
 });

@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import Header from '../components/Header';
+import Profile from '../components/landingtabs/Profile';
 import COTD from '../components/landingtabs/COTD';
 import Martini from '../components/landingtabs/MartiniMonday';
 import Tequila from '../components/landingtabs/TequilaTuesday';
@@ -17,7 +19,8 @@ function Home({navigation}) {
 
 	return (
         <ScrollView>
-			<Text style={styles.logo}>tipsi</Text>
+            <Header />
+            <Profile />
             <Martini />
             <COTD />
             <Tequila />
@@ -28,16 +31,17 @@ function Home({navigation}) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#EFA00B',
+		backgroundColor: '#101316',
 		alignItems: 'flex-start',
 	},
 	logo: {
-        paddingTop: 5,
+        paddingTop: 40,
         paddingLeft: 45,
-        backgroundColor: '#EFA00B',
-        color: "#000",
-        fontSize: 40,
-        fontFamily: 'PrataRegular'
+        backgroundColor: '#1f262a',
+        color: "#eee",
+        fontSize: 50,
+        fontFamily: 'PrataRegular',
+        position: 'relative',
     }
 });
 

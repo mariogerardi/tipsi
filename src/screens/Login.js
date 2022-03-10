@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
-import { abs } from 'react-native-reanimated';
 
 function Login({navigation}) {
 
@@ -16,16 +15,20 @@ function Login({navigation}) {
     return (
         <SafeAreaView style={styles.container}>
             <View>
-                <Text style={styles.logo}>tipsi</Text>
+                <Text 
+                style={styles.logo} 
+                onPress={() => navigation.push('Home')}>tipsi</Text>
                 <View style={styles.list}>
                     <TextInput 
                         style={styles.input}
                         placeholder="email:"
+                        placeholderTextColor='#888'
                     />
                     <TextInput
                         style={styles.input}
                         secureTextEntry={true}
                         placeholder="password:"
+                        placeholderTextColor='#888'
                     />
                     <Pressable style={styles.button}>
                         <Text style={styles.buttontext}>log in</Text>
@@ -36,10 +39,6 @@ function Login({navigation}) {
                     title="sign up" 
                     onPress={() => navigation.push('Register')}>
                 </Button>
-                <Button 
-                    title="home (testing purposes)" 
-                    onPress={() => navigation.push('Home')}>
-                </Button>
             </View>
         </SafeAreaView>
     )
@@ -48,13 +47,13 @@ function Login({navigation}) {
 const styles = StyleSheet.create({
 	container: {
         flex: 1,
-		backgroundColor: '#EFA00B',
+		backgroundColor: '#101316',
 		alignItems: 'center',
 	},
 	logo: {
-        fontSize: 50,
-        color: "#000",
-        marginTop: 75,
+        fontSize: 60,
+        color: "#eee",
+        marginVertical: 75,
         textAlign: 'center',
         position: 'relative',
         top: 18,
@@ -62,10 +61,10 @@ const styles = StyleSheet.create({
         fontFamily: "PrataRegular",
     },
     list: {
-        width: 300,
-        height: 225,
-        backgroundColor: "#eeeeee",
-        borderRadius: 15,
+        width: 290,
+        height: 230,
+        backgroundColor: "#ddd",
+        borderRadius: 10,
         alignItems: 'center',
     },
     input: {
@@ -73,15 +72,15 @@ const styles = StyleSheet.create({
         height: 50,
         paddingHorizontal: 10,
         backgroundColor: "#ffffff",
-        borderRadius: 10,
+        borderRadius: 5,
         marginTop: 20,
     },
     button: {
         width: 260,
         height: 50,
         backgroundColor: "#0275d8",
-        borderRadius: 10,
-        marginTop: 15,
+        borderRadius: 5,
+        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -91,8 +90,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
 	account: {
-        fontSize: 20,
-        color: "#000",
+        fontSize: 15,
+        color: "#ddd",
         marginTop: 10,
         textAlign: 'center',
     },

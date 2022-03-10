@@ -88,26 +88,30 @@ function Martinis() {
 const styles = StyleSheet.create({
     container: {
         height: 400,
-        backgroundColor: '#EFA00B',
+        backgroundColor: '#101316',
         alignItems: 'flex-start',
     },
     header: {
-        color: "#000",
+        color: "#eee",
         fontSize: 35,
         position: 'relative',
-        top: 17,
+        top: 18,
         left: 35,
         zIndex: 1,
         fontFamily: "PrataRegular",
     },
     list: {
         color: "#000",
-        backgroundColor: "white",
+        backgroundColor: "#454",
         fontSize: 30,
         marginTop: 5,
         marginLeft: 20,
         borderTopLeftRadius: 15,
         borderBottomLeftRadius: 15,
+        borderColor: 'white',
+        borderTopWidth: .5,
+        borderLeftWidth: .5,
+        borderBottomWidth: .5,
     },
     drinkbox: {
         maxWidth: 125,
@@ -117,15 +121,19 @@ const styles = StyleSheet.create({
     img: {
         height: 125,
         width: 125,
-        borderRadius: 10
+        borderWidth: .5,
+        borderRadius: 10,
+        borderColor: '#eee',
     },
     name: {
         fontSize: 16,
-        marginTop: 5
+        marginTop: 10,
+        color: '#eee',
     },
     ingredients: {
         fontSize: 14,
-        marginTop: 5
+        marginTop: 5,
+        color: '#ddd',
     },
     viewButton: {
         width: 125,

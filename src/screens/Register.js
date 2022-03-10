@@ -21,37 +21,35 @@ function Register({navigation}) {
                     <TextInput 
                         style={styles.input}
                         placeholder="username"
-                        placeholderTextColor='#999'
-                        placeholderFontSize='113'
+                        placeholderTextColor='#888'
                     />
                     <TextInput 
                         style={styles.input}
                         placeholder="email"
+                        placeholderTextColor='#888'
                     />
                     <TextInput
                         style={styles.input}
                         secureTextEntry={true}
                         placeholder="password"
+                        placeholderTextColor='#888'
                     />
                     <TextInput 
                         style={styles.input}
                         placeholder="age"
+                        placeholderTextColor='#888'
                         keyboardType='numeric'
                         maxLength={2}
                     />
                     <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
                     <Pressable style={styles.button}>
-                        <Text style={styles.buttontext}>log in</Text>
+                        <Text style={styles.buttontext}>sign up</Text>
                     </Pressable>
                 </View>
                 <Text style={styles.account}>already have an account?</Text>
                 <Button 
                     title="log in" 
                     onPress={() => navigation.push('Login')}>
-                </Button>
-                <Button 
-                    title="home (testing purposes)" 
-                    onPress={() => navigation.push('Home')}>
                 </Button>
             </View>
         </SafeAreaView>
@@ -61,25 +59,21 @@ function Register({navigation}) {
 const styles = StyleSheet.create({
 	container: {
         flex: 1,
-		backgroundColor: '#EFA00B',
+		backgroundColor: '#101316',
 		alignItems: 'center',
 	},
 	logo: {
-        fontSize: 50,
-        color: "black",
-        marginTop: 45,
+        fontSize: 60,
+        color: "#eee",
+        marginVertical: 40,
         textAlign: 'center',
-        position: 'relative',
-        top: 18,
-        right: 80,
-        zIndex: 1,
         fontFamily: 'PrataRegular',
     },
     list: {
-        width: 300,
-        height: 380,
+        width: 290,
+        height: 350,
         backgroundColor: "#ddd",
-        borderRadius: 15,
+        borderRadius: 10,
         alignItems: 'center',
     },
     input: {
@@ -87,15 +81,15 @@ const styles = StyleSheet.create({
         height: 50,
         paddingHorizontal: 10,
         backgroundColor: "#ffffff",
-        borderRadius: 10,
-        marginTop: 20
+        borderRadius: 5,
+        marginTop: 15
     },
     button: {
         width: 260,
         height: 50,
         backgroundColor: "#0275d8",
         borderRadius: 10,
-        marginTop: 15,
+        marginTop: 7,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -105,15 +99,15 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
 	account: {
-        fontSize: 20,
-        color: "#000",
+        fontSize: 15,
+        color: "#ddd",
         marginTop: 10,
         textAlign: 'center',
     },
     note: {
         textAlign: 'left',
         fontSize: 11,
-        marginTop: 3,
+        marginTop: 7,
     }
 });
 
