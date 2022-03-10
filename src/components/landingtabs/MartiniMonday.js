@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, Image, View, FlatList, Pressable, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function Martinis() {
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -27,6 +29,14 @@ function Martinis() {
         }
     }
 
+    function moreThanThreeIngredients(props) {
+        if (props) {
+            return "...";
+        }
+    }
+
+    const navigation = useNavigation(); 
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>martini monday</Text>
@@ -44,19 +54,20 @@ function Martinis() {
                                 {item.strIngredient1}
                                 {emptyIngredient(item.strIngredient2)}
                                 {emptyIngredient(item.strIngredient3)}
-                                {emptyIngredient(item.strIngredient4)}
-                                {emptyIngredient(item.strIngredient5)}
-                                {emptyIngredient(item.strIngredient6)}
-                                {emptyIngredient(item.strIngredient7)}
-                                {emptyIngredient(item.strIngredient8)}
-                                {emptyIngredient(item.strIngredient9)}
-                                {emptyIngredient(item.strIngredient10)}
-                                {emptyIngredient(item.strIngredient11)}
-                                {emptyIngredient(item.strIngredient12)}
-                                {emptyIngredient(item.strIngredient13)}
-                                {emptyIngredient(item.strIngredient14)}
-                                {emptyIngredient(item.strIngredient15)}
+                                {moreThanThreeIngredients(item.strIngredient4)}
                             </Text>
+                            <Pressable 
+                                style={styles.viewButton}
+                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
+                            >
+                                <Text style={styles.buttonText}>View</Text>
+                            </Pressable>
+                            <Pressable 
+                                style={styles.addButton}
+                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
+                            >
+                                <Text style={styles.buttonText}>Add</Text>
+                            </Pressable>
                         </View>
                     )}
                 />
@@ -67,8 +78,8 @@ function Martinis() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "45%",
-        backgroundColor: '#94b4d4',
+        height: "50%",
+        backgroundColor: '#EFA00B',
         alignItems: 'flex-start',
     },
     header: {
@@ -85,8 +96,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         marginTop: 5,
         marginLeft: 20,
-        borderTopLeftRadius: 30,
-        borderBottomLeftRadius: 30,
+        borderTopLeftRadius: 15,
+        borderBottomLeftRadius: 15,
     },
     drinkbox: {
         maxWidth: 125,
@@ -96,7 +107,7 @@ const styles = StyleSheet.create({
     img: {
         height: 125,
         width: 125,
-        borderRadius: 20
+        borderRadius: 10
     },
     name: {
         fontSize: 16,
@@ -105,6 +116,28 @@ const styles = StyleSheet.create({
     ingredients: {
         fontSize: 14,
         marginTop: 5
+    },
+    viewButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#0275d8',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 10,
+    },
+    addButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#28a745',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 45,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
     }
 });
 

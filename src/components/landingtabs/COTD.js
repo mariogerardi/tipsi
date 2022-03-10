@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
 
-function Tequila() {
+function COTD() {
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getTequila = async () => {
+    const getCOTD = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=tequila');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -18,15 +19,14 @@ function Tequila() {
     }
 
     useEffect(() => {
-        getTequila();
+        getCOTD();
     }, []);
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>tequila tuesday</Text>
+            <Text style={styles.header}>cocktail of the day</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
-                    horizontal
                     style={styles.list}
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
@@ -44,39 +44,41 @@ function Tequila() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "30%",
-        backgroundColor: '#94b4d4',
-        alignItems: 'flex-start',
+        height: "35%",
+        backgroundColor: '#EFA00B',
+        alignItems: 'flex-end',
     },
     header: {
         color: "#000",
         fontSize: 30,
+        textAlign: 'center',
         position: 'relative',
         top: 12,
-        left: 45,
+        right: 45,
         zIndex: 1,
     },
     list: {
-        color: "#000",
+        color: "black",
         backgroundColor: "white",
         fontSize: 30,
         marginTop: 5,
-        marginLeft: 20,
-        borderTopLeftRadius: 30,
-        borderBottomLeftRadius: 30,
+        marginRight: 20,
+        borderTopRightRadius: 30,
+        borderBottomRightRadius: 30,
     },
     drinkbox: {
-        maxWidth: 125,
+        alignItems: "flex-start",
+        minWidth: "96%",
         marginTop: 15,
-        marginLeft: 15,
+        marginLeft: 15
     },
     img: {
-        height: 125,
-        width: 125,
+        height: '135%',
+        width: '50%',
         borderRadius: 20
     },
     name: {
-        fontSize: 16,
+        fontSize: 20,
         marginTop: 5
     },
     ingredients: {
@@ -85,4 +87,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = Tequila;
+module.exports = COTD;

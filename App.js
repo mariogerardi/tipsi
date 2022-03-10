@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import COTD from './components/landingtabs/COTD';
-import Martini from './components/landingtabs/MartiniMonday';
-import Tequila from './components/landingtabs/TequilaTuesday';
+import { SafeAreaView, ScrollView } from 'react-native';
+import Home from './src/screens/HomeScreen.js';
+import Login from './src/screens/Login.js';
+import Register from './src/screens/Register.js';
+import Cocktail from './src/screens/ShowCocktail.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text style={styles.logo}>tipsi</Text>
-            <Martini />
-            <COTD />
-            <Tequila />
-			<StatusBar style="auto" />
-		</SafeAreaView>
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen
+        			name="Login"
+        			component={Login}
+					options={{headerShown: false}}
+        			/>
+				<Stack.Screen
+        			name="Sign Up"
+        			component={Register}
+					options={{headerShown: false}}
+        			/>
+				<Stack.Screen
+        			name="Home"
+        			component={Home}
+					options={{headerShown: false}}
+        			/>
+				<Stack.Screen
+        			name="Show"
+        			component={Cocktail}
+					options={{headerShown: false}}
+        			/>
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#94b4d4',
-		alignItems: 'flex-start',
-	},
-	logo: {
-        marginTop: 5,
-        marginLeft: 20,
-        color: "#000",
-        fontSize: 40,
-    }
-});
 
 export default App;
