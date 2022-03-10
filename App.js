@@ -20,7 +20,7 @@ function App() {
 					options={{headerShown: false}}
         			/>
 				<Stack.Screen
-        			name="Sign Up"
+        			name="Register"
         			component={Register}
 					options={{headerShown: false}}
         			/>

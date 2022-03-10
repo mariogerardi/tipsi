@@ -1,7 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
+import { useFonts } from 'expo-font';
+import { abs } from 'react-native-reanimated';
 
 function Login({navigation}) {
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -41,13 +52,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
-        fontSize: 40,
+        fontSize: 50,
         color: "#000",
         marginTop: 75,
         textAlign: 'center',
         position: 'relative',
-        top: 9,
+        top: 18,
         zIndex: 1,
+        fontFamily: "PrataRegular",
     },
     list: {
         width: 300,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
-
+import { useFonts } from 'expo-font';
 function Profile() {
     
     const [isLoading, setLoading] = useState(true);
@@ -21,6 +21,14 @@ function Profile() {
     useEffect(() => {
         getProfile();
     }, []);
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <View style={styles.container}>

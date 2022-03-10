@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { useFonts } from 'expo-font';
 
 function Cocktail({route}) {
     
@@ -32,6 +33,14 @@ function Cocktail({route}) {
         if (props) {
             return (props + " ");
         }
+    }
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
     }
 
     return (
@@ -84,11 +93,12 @@ const styles = StyleSheet.create({
     },
     header: {
         color: "#000",
-        fontSize: 35,
+        fontSize: 45,
         textAlign: 'center',
         position: 'relative',
-        top: 18,
+        top: 26,
         zIndex: 1,
+        fontFamily: 'PrataRegular',
     },
     list: {
         color: "black",

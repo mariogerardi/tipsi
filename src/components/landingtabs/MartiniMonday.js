@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, Pressable, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 function Martinis() {
 
@@ -36,6 +37,14 @@ function Martinis() {
     }
 
     const navigation = useNavigation(); 
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <View style={styles.container}>
@@ -78,17 +87,18 @@ function Martinis() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "50%",
+        height: 400,
         backgroundColor: '#EFA00B',
         alignItems: 'flex-start',
     },
     header: {
         color: "#000",
-        fontSize: 30,
+        fontSize: 35,
         position: 'relative',
-        top: 12,
-        left: 45,
+        top: 17,
+        left: 35,
         zIndex: 1,
+        fontFamily: "PrataRegular",
     },
     list: {
         color: "#000",

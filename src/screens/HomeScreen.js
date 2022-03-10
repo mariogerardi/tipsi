@@ -3,8 +3,18 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import COTD from '../components/landingtabs/COTD';
 import Martini from '../components/landingtabs/MartiniMonday';
 import Tequila from '../components/landingtabs/TequilaTuesday';
+import { useFonts } from 'expo-font';
 
 function Home({navigation}) {
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
+    }
+
 	return (
         <ScrollView>
 			<Text style={styles.logo}>tipsi</Text>
@@ -27,6 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#EFA00B',
         color: "#000",
         fontSize: 40,
+        fontFamily: 'PrataRegular'
     }
 });
 

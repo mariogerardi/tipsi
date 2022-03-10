@@ -1,19 +1,17 @@
 import React, { useEffect, useState }from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
 import RegisterForm from '../components/forms/RegisterForm';
+import { useFonts } from 'expo-font';
 
 function Register({navigation}) {
 
-    const [Profile, setProfile] = useState(null);
+    const [loaded] = useFonts({
+        PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
+    });
 
-    const URL = "http://localhost:4000/profile/";
-
-    const getProfile = async () => {
-        const response = await fetch(URL);
-        const data = await response.json();
-        setProfile(data);
-        console.log(setProfile)
-    };
+    if (!loaded) {
+        return null;
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -67,14 +65,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
-        fontSize: 40,
+        fontSize: 50,
         color: "black",
         marginTop: 45,
         textAlign: 'center',
         position: 'relative',
-        top: 9,
-        right: 95,
+        top: 18,
+        right: 80,
         zIndex: 1,
+        fontFamily: 'PrataRegular',
     },
     list: {
         width: 300,

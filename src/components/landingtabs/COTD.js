@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, Image, View, Pressable, FlatList, ActivityIndicator } from 'react-native';
+import { useFonts } from 'expo-font';
 
 function COTD() {
 
@@ -22,6 +23,26 @@ function COTD() {
         getCOTD();
     }, []);
 
+    function emptyIngredient(props) {
+        if (props) {
+            return ", " + props;
+        }
+    }
+
+    function moreThanThreeIngredients(props) {
+        if (props) {
+            return "...";
+        }
+    }
+
+    const [loaded] = useFonts({
+        PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
+    });
+
+    if (!loaded) {
+        return null;
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>cocktail of the day</Text>
@@ -34,6 +55,24 @@ function COTD() {
                         <View style={styles.drinkbox}>
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                             <Text style={styles.name}>{item.strDrink}</Text>
+                            <Text style={styles.ingredients}>
+                                {item.strIngredient1}
+                                {emptyIngredient(item.strIngredient2)}
+                                {emptyIngredient(item.strIngredient3)}
+                                {moreThanThreeIngredients(item.strIngredient4)}
+                            </Text>
+                            <Pressable 
+                                style={styles.viewButton}
+                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
+                            >
+                                <Text style={styles.buttonText}>View</Text>
+                            </Pressable>
+                            <Pressable 
+                                style={styles.addButton}
+                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
+                            >
+                                <Text style={styles.buttonText}>Add</Text>
+                            </Pressable>
                         </View>
                     )}
                 />
@@ -44,18 +83,19 @@ function COTD() {
 
 const styles = StyleSheet.create({
     container: {
-        height: "35%",
+        height: 475,
         backgroundColor: '#EFA00B',
         alignItems: 'flex-end',
     },
     header: {
         color: "#000",
-        fontSize: 30,
+        fontSize: 35,
         textAlign: 'center',
         position: 'relative',
-        top: 12,
-        right: 45,
+        top: 17,
+        right: 35,
         zIndex: 1,
+        fontFamily: 'PrataRegular',
     },
     list: {
         color: "black",
@@ -63,8 +103,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         marginTop: 5,
         marginRight: 20,
-        borderTopRightRadius: 30,
-        borderBottomRightRadius: 30,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
     },
     drinkbox: {
         alignItems: "flex-start",
@@ -73,17 +113,39 @@ const styles = StyleSheet.create({
         marginLeft: 15
     },
     img: {
-        height: '135%',
-        width: '50%',
-        borderRadius: 20
+        height: 200,
+        width: '95%',
+        borderRadius: 10,
     },
     name: {
-        fontSize: 20,
+        fontSize: 25,
         marginTop: 5
     },
     ingredients: {
-        fontSize: 20,
+        fontSize: 14,
         marginTop: 5
+    },
+    viewButton: {
+        width: 325,
+        marginVertical: 5,
+        paddingVertical: 10,
+        backgroundColor: '#0275d8',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: -145,
+    },
+    addButton: {
+        width: 325,
+        marginVertical: 5,
+        paddingVertical: 10,
+        backgroundColor: '#28a745',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: -100,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
     }
 });
 
