@@ -57,7 +57,8 @@ function Martinis() {
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
+                        <TouchableWithoutFeedback 
+                        onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
                             <View style={styles.drinkbox} >
                                 <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                                 <Image style={styles.img} source={require("../../../assets/image-overlay.png")}/>
