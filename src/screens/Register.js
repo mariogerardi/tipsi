@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } fr
 import RegisterForm from '../components/forms/Registration';
 import { useFonts } from 'expo-font';
 
-
 function Register({navigation}) {
 
     const [loaded] = useFonts({

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import Profile from '../components/landingtabs/Profile';
+import Rec from '../components/landingtabs/misc/Rec'
 import COTD from '../components/landingtabs/misc/COTD';
 import Shot from '../components/landingtabs/misc/Shot';
 import Martini from '../components/landingtabs/days/MartiniMonday';
@@ -12,7 +13,7 @@ import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
 import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
 import { useFonts } from 'expo-font';
 
-function Home({navigation}) {
+function Home() {
 
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -25,13 +26,15 @@ function Home({navigation}) {
 	return (
         <ScrollView style={styles.container}>
             <Header />
-            <AbsolutCitron />
-            <Lemon />
+            <Profile />
+            <COTD />
             <Martini />
+            <AbsolutCitron />
+            <Rec />
+            <Lemon />
             <SouthernComfort />
             <Shot />
             <Coffee />
-            <COTD />
             <Tequila />
         </ScrollView>
 	);

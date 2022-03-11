@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
 
-function Login({navigation}) {
+function Login({navigation, route}) {
 
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -16,8 +16,9 @@ function Login({navigation}) {
         <SafeAreaView style={styles.container}>
             <View>
                 <Text 
-                style={styles.logo} 
-                onPress={() => navigation.push('Home')}>tipsi</Text>
+                    style={styles.logo} 
+                    onPress={() => navigation.push('Home')}>tipsi
+                </Text>
                 <View style={styles.list}>
                     <TextInput 
                         style={styles.input}

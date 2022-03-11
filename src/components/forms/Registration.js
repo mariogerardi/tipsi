@@ -16,15 +16,20 @@ const handleSubmit = async (e) => {
         if (response.status === 201) {
             alert(`You have created: ${JSON.stringify(response.data)}`);
         }
+        navigation.push("Home", e)
     } catch (err) {
         console.log(err);
     }
 };
 
-const RegisterForm = props => (
+function RegisterForm() {
+
+    const navigation = useNavigation();
+
+    return (
     <Formik 
-    initialValues={{ email: '',  }}
-    onSubmit={values => handleSubmit(values)}
+        initialValues={{ email: '',  }}
+        onSubmit={values => handleSubmit(values)}
     >
     {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View style={styles.list}>
@@ -65,14 +70,14 @@ const RegisterForm = props => (
             />
             <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
             <Pressable 
-                onPress={handleSubmit} 
+                onPress={() => {handleSubmit(); navigation.push("Home")}} 
                 style={styles.button}>
                 <Text style={styles.buttontext}>sign up</Text>
             </Pressable>
         </View> 
         )}
     </Formik>
-);
+)};
 
 const styles = StyleSheet.create({
 	container: {
