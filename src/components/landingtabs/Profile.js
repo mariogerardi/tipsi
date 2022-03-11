@@ -10,7 +10,7 @@ function Profile() {
 
     const getProfile = async () => {
         try {
-            const response = await fetch('https://tipsi-backend.herokuapp.com/profile');
+            const response = await fetch('https://tipsi-backend.herokuapp.com/profile/profile');
             const json = await response.json();
             setData(json);
         } catch (error) {

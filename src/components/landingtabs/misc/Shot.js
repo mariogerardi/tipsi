@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 import { useFonts } from 'expo-font';
 
-function Martinis() {
+function Shot() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getMartinis = async () => {
+    const getShot = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=martini');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=shot_glass');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -22,7 +21,7 @@ function Martinis() {
     }
 
     useEffect(() => {
-        getMartinis();
+        getShot();
     }, []);
 
     function emptyIngredient(props) {
@@ -40,7 +39,7 @@ function Martinis() {
     const navigation = useNavigation(); 
 
     const [loaded] = useFonts({
-        PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
+        PrataRegular: require('../../../../assets/fonts/Prata-Regular.ttf'),
     });
 
     if (!loaded) {
@@ -49,19 +48,20 @@ function Martinis() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>martini monday</Text>
+            <Text style={styles.header}>specialty shots</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
+                    initialNumToRender={5}
+                    maxToRenderPerBatch={10}
                     style={styles.list}
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <TouchableWithoutFeedback 
-                        onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
+                        <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
                             <View style={styles.drinkbox} >
                                 <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                                <Image style={styles.img} source={require("../../../assets/image-overlay.png")}/>
+                                <Image style={styles.img} source={require("../../../../assets/image-overlay.png")}/>
                                 <Text style={styles.name}>{item.strDrink}</Text>
                                 <Text style={styles.ingredients}>
                                     {item.strIngredient1}
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
         width: 150,
         marginTop: 2,
         marginLeft: 3,
+        alignItems: 'center'
     },
     img: {
         height: 242,
@@ -117,41 +118,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     name: {
-        fontSize: 16,
-        margin: 5,
+        fontSize: 18,
+        margin: 3,
         position: 'absolute',
-        bottom: 35,
-        color: '#eee',
-    },
-    ingredients: {
-        fontSize: 12,
-        margin: 5,
-        color: '#ddd',
-        position: 'absolute',
-        top: 200,
-    },
-    viewButton: {
-        width: 125,
-        marginVertical: 5,
-        paddingVertical: 5,
-        backgroundColor: '#0275d8',
-        borderRadius: 5,
-        position: 'absolute',
-        bottom: 10,
-    },
-    addButton: {
-        width: 125,
-        marginVertical: 5,
-        paddingVertical: 5,
-        backgroundColor: '#28a745',
-        borderRadius: 5,
-        position: 'absolute',
-        bottom: 45,
-    },
-    buttonText: {
+        bottom: 5,
         textAlign: 'center',
-        color: 'white',
+        color: '#eee',
     }
 });
 
-module.exports = Martinis;
+module.exports = Shot;

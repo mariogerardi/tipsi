@@ -40,7 +40,7 @@ function COTD() {
     const navigation = useNavigation(); 
 
     const [loaded] = useFonts({
-        PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
+        PrataRegular: require('../../../../assets/fonts/Prata-Regular.ttf'),
     });
 
     if (!loaded) {
@@ -52,6 +52,8 @@ function COTD() {
             <Text style={styles.header}>cocktail of the day</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                    initialNumToRender={5}
+                    maxToRenderPerBatch={10}
                     style={styles.list}
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
@@ -59,7 +61,7 @@ function COTD() {
                         <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
                             <View style={styles.drinkbox}>
                                 <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                                <Image style={styles.imggradient} source={require("../../../assets/image-overlay.png")}/>
+                                <Image style={styles.imggradient} source={require("../../../../assets/image-overlay.png")}/>
                                 <Text style={styles.name}>{item.strDrink}</Text>
                                 <Text style={styles.ingredients}>
                                     {item.strIngredient1}

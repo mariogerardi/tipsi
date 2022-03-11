@@ -1,7 +1,8 @@
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
-import RegisterForm from '../components/forms/RegisterForm';
+import RegisterForm from '../components/forms/Registration';
 import { useFonts } from 'expo-font';
+
 
 function Register({navigation}) {
 
@@ -17,35 +18,7 @@ function Register({navigation}) {
         <SafeAreaView style={styles.container}>
             <View>
                 <Text style={styles.logo}>tipsi</Text>
-                <View style={styles.list}>
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="username"
-                        placeholderTextColor='#888'
-                    />
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="email"
-                        placeholderTextColor='#888'
-                    />
-                    <TextInput
-                        style={styles.input}
-                        secureTextEntry={true}
-                        placeholder="password"
-                        placeholderTextColor='#888'
-                    />
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="age"
-                        placeholderTextColor='#888'
-                        keyboardType='numeric'
-                        maxLength={2}
-                    />
-                    <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
-                    <Pressable style={styles.button}>
-                        <Text style={styles.buttontext}>sign up</Text>
-                    </Pressable>
-                </View>
+                <RegisterForm />
                 <Text style={styles.account}>already have an account?</Text>
                 <Button 
                     title="log in" 

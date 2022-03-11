@@ -2,9 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import Profile from '../components/landingtabs/Profile';
-import COTD from '../components/landingtabs/COTD';
-import Martini from '../components/landingtabs/MartiniMonday';
-import Tequila from '../components/landingtabs/TequilaTuesday';
+import COTD from '../components/landingtabs/misc/COTD';
+import Shot from '../components/landingtabs/misc/Shot';
+import Martini from '../components/landingtabs/days/MartiniMonday';
+import Tequila from '../components/landingtabs/days/TequilaTuesday';
+import Lemon from '../components/landingtabs/ingredients/Lemon';
+import Coffee from '../components/landingtabs/ingredients/Coffee';
+import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
+import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
 import { useFonts } from 'expo-font';
 
 function Home({navigation}) {
@@ -20,8 +25,12 @@ function Home({navigation}) {
 	return (
         <ScrollView style={styles.container}>
             <Header />
-            <Profile />
+            <AbsolutCitron />
+            <Lemon />
             <Martini />
+            <SouthernComfort />
+            <Shot />
+            <Coffee />
             <COTD />
             <Tequila />
         </ScrollView>
