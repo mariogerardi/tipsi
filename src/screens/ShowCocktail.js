@@ -56,6 +56,7 @@ function Cocktail({route}) {
                         <View style={styles.drinkbox}>
                             <Text style={styles.header}>{route.params.name}</Text>
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
+                            <Image style={styles.imggradient} source={require("../../assets/image-overlay.png")}/>
                             <Text style={styles.ingredients}>
                                 {emptyMeasurement(item.strMeasure1)}{emptyIngredient(item.strIngredient1)}
                                 {emptyMeasurement(item.strMeasure2)}{emptyIngredient(item.strIngredient2)}
@@ -94,12 +95,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     header: {
-        color: "#000",
-        fontSize: 28,
+        color: "#eee",
+        fontSize: 32,
         alignSelf: 'center',
         textAlign: 'center',
         zIndex: 1,
         fontFamily: 'PrataRegular',
+        position: 'absolute',
+        top: 240,
+        maxWidth: 350,
     },
     list: {
         color: "black",
@@ -111,16 +115,16 @@ const styles = StyleSheet.create({
     drinkbox: {
         alignItems: "flex-start",
         width: 350,
-        marginTop: 10,
+        marginTop: 0,
     },
     img: {
         height: 350,
         width: '100%',
-        borderRadius: 0
     },
-    name: {
-        fontSize: 20,
-        marginTop: 5
+    imggradient: {
+        height: 350,
+        width: '100%',
+        position: 'absolute',
     },
     ingredients: {
         fontSize: 15,

@@ -18,7 +18,7 @@ function Home({navigation}) {
     }
 
 	return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
             <Header />
             <Profile />
             <Martini />
@@ -30,19 +30,8 @@ function Home({navigation}) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		backgroundColor: '#101316',
-		alignItems: 'flex-start',
-	},
-	logo: {
-        paddingTop: 40,
-        paddingLeft: 45,
-        backgroundColor: '#1f262a',
-        color: "#eee",
-        fontSize: 50,
-        fontFamily: 'PrataRegular',
-        position: 'relative',
-    }
+	}
 });
 
 export default Home;

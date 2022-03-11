@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, Pressable, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
@@ -56,28 +56,19 @@ function Tequila() {
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <View style={styles.drinkbox}>
-                            <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                            <Text style={styles.name}>{item.strDrink}</Text>
-                            <Text style={styles.ingredients}>
-                                {item.strIngredient1}
-                                {emptyIngredient(item.strIngredient2)}
-                                {emptyIngredient(item.strIngredient3)}
-                                {moreThanThreeIngredients(item.strIngredient4)}
-                            </Text>
-                            <Pressable 
-                                style={styles.viewButton}
-                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
-                            >
-                                <Text style={styles.buttonText}>View</Text>
-                            </Pressable>
-                            <Pressable 
-                                style={styles.addButton}
-                                onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}
-                            >
-                                <Text style={styles.buttonText}>Add</Text>
-                            </Pressable>
-                        </View>
+                        <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
+                            <View style={styles.drinkbox} >
+                                <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
+                                <Image style={styles.img} source={require("../../../assets/image-overlay.png")}/>
+                                <Text style={styles.name}>{item.strDrink}</Text>
+                                <Text style={styles.ingredients}>
+                                    {item.strIngredient1}
+                                    {emptyIngredient(item.strIngredient2)}
+                                    {emptyIngredient(item.strIngredient3)}
+                                    {moreThanThreeIngredients(item.strIngredient4)}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
                     )}
                 />
             )}
@@ -87,8 +78,7 @@ function Tequila() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 400,
-        backgroundColor: '#101316',
+        height: 300,
         alignItems: 'flex-start',
     },
     header: {
@@ -102,7 +92,7 @@ const styles = StyleSheet.create({
     },
     list: {
         color: "#000",
-        backgroundColor: "#544",
+        backgroundColor: "#222",
         fontSize: 30,
         marginTop: 5,
         marginLeft: 20,
@@ -114,26 +104,29 @@ const styles = StyleSheet.create({
         borderBottomWidth: .5,
     },
     drinkbox: {
-        maxWidth: 125,
-        marginTop: 15,
-        marginLeft: 15,
+        width: 150,
+        marginTop: 2,
+        marginLeft: 3,
     },
     img: {
-        height: 125,
-        width: 125,
-        borderWidth: .5,
-        borderRadius: 10,
-        borderColor: '#eee',
+        height: 242,
+        width: 150,
+        borderRadius: 12,
+        position: 'absolute',
     },
     name: {
         fontSize: 16,
-        marginTop: 10,
+        margin: 5,
+        position: 'absolute',
+        bottom: 35,
         color: '#eee',
     },
     ingredients: {
-        fontSize: 14,
-        marginTop: 5,
+        fontSize: 12,
+        margin: 5,
         color: '#ddd',
+        position: 'absolute',
+        top: 200,
     },
     viewButton: {
         width: 125,
