@@ -52,6 +52,7 @@ function Aperol() {
             <Text style={styles.header}>happy hour</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                    horizontal
                     initialNumToRender={5}
                     maxToRenderPerBatch={10}
                     style={styles.list}

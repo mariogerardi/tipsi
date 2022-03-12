@@ -27,12 +27,12 @@ function Home() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#101316',
+		backgroundColor: 'transparent',
+        paddingTop: 0,
 		alignItems: 'center',
 	},
 	logo: {
         paddingTop: 50,
-        backgroundColor: '#101316',
         color: "#eee",
         fontSize: 50,
         fontFamily: 'PrataRegular',

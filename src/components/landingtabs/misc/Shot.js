@@ -52,8 +52,9 @@ function Shot() {
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
-                    initialNumToRender={5}
-                    maxToRenderPerBatch={10}
+                    initialNumToRender={3}
+                    maxToRenderPerBatch={20}
+                    windowSize={7}
                     style={styles.list}
                     data={data.drinks}
                     keyExtractor={({ id }) => id}

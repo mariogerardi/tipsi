@@ -21,7 +21,7 @@ function Register({navigation}) {
                 <Text style={styles.account}>already have an account?</Text>
                 <Button 
                     title="log in" 
-                    onPress={() => navigation.push('Login')}>
+                    onPress={() => navigation.pop()}>
                 </Button>
             </View>
         </SafeAreaView>

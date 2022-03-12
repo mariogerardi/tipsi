@@ -52,6 +52,7 @@ function RustyNail() {
             <Text style={styles.header}>a timeless classic</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                    horizontal
                     initialNumToRender={5}
                     maxToRenderPerBatch={10}
                     style={styles.list}

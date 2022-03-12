@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, Image, ImageBackground, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, Image, ImageBackground, View, ScrollView, Dimensions } from 'react-native';
 import Header from '../components/Header';
+import { useFonts } from 'expo-font';
+
 import Rec from '../components/landingtabs/misc/Rec'
 import COTD from '../components/landingtabs/misc/COTD';
 import Shot from '../components/landingtabs/misc/Shot';
-import Aperol from '../components/landingtabs/misc/Aperol';
-import RustyNail from '../components/landingtabs/misc/RustyNail';
 import Popular from '../components/landingtabs/misc/Popular';
+
+import Aperol from '../components/landingtabs/cocktails/AperolSpritz';
+import RustyNail from '../components/landingtabs/cocktails/RustyNail';
+
 import Scotch from '../components/landingtabs/days/ScotchSunday';
 import Martini from '../components/landingtabs/days/MartiniMonday';
 import Tequila from '../components/landingtabs/days/TequilaTuesday';
@@ -14,12 +18,13 @@ import Whiskey from '../components/landingtabs/days/WhiskeyWednesday';
 import Tropical from '../components/landingtabs/days/TropicalThursday';
 import Frozen from '../components/landingtabs/days/FrozenFriday';
 import Sober from '../components/landingtabs/days/SoberSaturday';
+
 import Lemon from '../components/landingtabs/ingredients/Lemon';
 import Coffee from '../components/landingtabs/ingredients/Coffee';
 import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
 import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
 import GinAndTonic from '../components/landingtabs/ingredients/GinAndTonic';
-import { useFonts } from 'expo-font';
+
 
 function Home({route}) {
 
@@ -30,6 +35,8 @@ function Home({route}) {
     if (!loaded) {
         return null;
     }
+
+    const windowHeight = Dimensions.get('window').height;
 
     function DOTW() {
         const d = new Date();
@@ -44,7 +51,7 @@ function Home({route}) {
         if (day === 1) {
             return  <View>
                         <Martini />
-                        <GinAndTonic />
+                        <Aperol />
                         <AbsolutCitron />
                     </View>;
         }
@@ -59,14 +66,14 @@ function Home({route}) {
             return  <View>
                         <Whiskey />
                         <Aperol />
-                        <Lemon />
+                        <GinAndTonic />
                     </View>;
         }
         if (day === 4) {
             return  <View>
                         <Tropical />
                         <Aperol />
-                        <Shot />
+                        <Lemon />
                     </View>;
         }
         if (day === 5) {
@@ -86,35 +93,51 @@ function Home({route}) {
     }
 
 	return (
-        <ScrollView style={styles.container}>
-            <Header />
-            <View style={styles.container}>
-                <View style={styles.list}>
-                    <View style={styles.content}>
-                        <View>
-                            <Image style={styles.profilepic} source={require("../../assets/orange.jpeg")}></Image>
+        <View style={styles.container2}>
+            <ImageBackground style={styles.background} source={require("../../assets/ray.png")} />
+            <ScrollView style={styles.container}>
+                <Header />
+                <View>
+                    <View style={styles.list}>
+                        <View style={styles.content}>
+                            <View>
+                                <Image style={styles.profilepic} source={require("../../assets/orange.jpeg")}></Image>
+                            </View>
+                            <View>
+                                <Text style={styles.header}>good to see you,</Text>
+                                <Text style={styles.header}>{route.params.username}</Text>
+                            </View> 
                         </View>
-                        <View>
-                            <Text style={styles.header}>good to see you,</Text>
-                            <Text style={styles.header}>{route.params.username}</Text>
-                        </View> 
                     </View>
                 </View>
-            </View>
-            <COTD />
-            <Popular />
-            <Rec />
-            {DOTW()}
-            <View style={styles.endbox}>
-                <Text style={styles.end}>...that's all for now. check back tomorrow!</Text>
-            </View>
-        </ScrollView>
+                <COTD />
+                <Popular />
+                <Rec />
+                {DOTW()}
+                <View style={styles.endbox}>
+                    <Text style={styles.end}>...that's all for now. check back tomorrow!</Text>
+                </View>
+            </ScrollView>
+        </View>
 	);
 }
 
 const styles = StyleSheet.create({
+    background: {
+        height: '100%',
+        width: '110%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    },
     container: {
-        height: 155,
+        height: '100%',
+        backgroundColor: 'transparent'
+    },
+    container2: {
+        height: '100%',
         backgroundColor: '#101316'
     },
     header: {
@@ -136,7 +159,7 @@ const styles = StyleSheet.create({
         height: 125,
         width: "100%",
         marginRight: 40,
-        paddingLeft: 30,
+        paddingLeft: 5,
         borderTopWidth: .5,
         borderColor: 'white',
         flexDirection: 'row',

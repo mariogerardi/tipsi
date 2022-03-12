@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
+import LoginForm from '../components/forms/Signin';
 
 function Login({navigation, route}) {
 
@@ -15,29 +16,11 @@ function Login({navigation, route}) {
     return (
         <SafeAreaView style={styles.container}>
             <View>
-                <Text 
-                    style={styles.logo} 
-                    onPress={() => navigation.push('Home')}>tipsi
-                </Text>
-                <View style={styles.list}>
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="email:"
-                        placeholderTextColor='#888'
-                    />
-                    <TextInput
-                        style={styles.input}
-                        secureTextEntry={true}
-                        placeholder="password:"
-                        placeholderTextColor='#888'
-                    />
-                    <Pressable style={styles.button}>
-                        <Text style={styles.buttontext}>log in</Text>
-                    </Pressable>
-                </View>
+                <Text style={styles.logo}>tipsi</Text>
+                <LoginForm />
                 <Text style={styles.account}>don't have an account yet?</Text>
                 <Button 
-                    title="sign up" 
+                    title="sign up"
                     onPress={() => navigation.push('Register')}>
                 </Button>
             </View>

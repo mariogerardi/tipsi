@@ -52,6 +52,7 @@ function Rec() {
             <Text style={styles.header}>tipsi recommends</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                    horizontal
                     initialNumToRender={5}
                     maxToRenderPerBatch={10}
                     style={styles.list}

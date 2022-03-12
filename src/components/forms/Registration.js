@@ -9,7 +9,6 @@ function RegisterForm() {
     const navigation = useNavigation();
 
     const handleSubmit = async (e) => {
-        console.log(e)
         try {
             const response = await axios.post
                 (
@@ -70,8 +69,21 @@ function RegisterForm() {
             />
             <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
             <Pressable 
-                onPress={() => {handleSubmit()}} 
-                style={styles.button}>
+                onPress={() => {handleSubmit()}}  
+                style={({ pressed }) => [
+                    {
+                        width: 260,
+                        height: 50,
+                        borderRadius: 5,
+                        marginTop: 7,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: pressed
+                        ? '#0031a2'
+                        : '#0035f4',
+                    },
+                    styles.wrapperCustom
+                ]}>
                 <Text style={styles.buttontext}>sign up</Text>
             </Pressable>
         </View> 
@@ -104,7 +116,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingHorizontal: 10,
         backgroundColor: "#ffffff",
-        borderRadius: 5,
+        borderRadius: 3,
         marginTop: 15
     },
     button: {
