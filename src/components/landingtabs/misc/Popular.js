@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-function Rec() {
+function Popular() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getRec = async () => {
+    const getPopular = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=17206');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/popular.php');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -22,7 +21,7 @@ function Rec() {
     }
 
     useEffect(() => {
-        getRec();
+        getPopular();
     }, []);
 
     function emptyIngredient(props) {
@@ -49,9 +48,10 @@ function Rec() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>tipsi recommends</Text>
+            <Text style={styles.header}>popular cocktails</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
+                    horizontal
                     initialNumToRender={5}
                     maxToRenderPerBatch={10}
                     style={styles.list}
@@ -59,9 +59,9 @@ function Rec() {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
-                            <View style={styles.drinkbox}>
+                            <View style={styles.drinkbox} >
                                 <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                                <Image style={styles.imggradient} source={require("../../../../assets/image-overlay.png")}/>
+                                <Image style={styles.img} source={require("../../../../assets/image-overlay.png")}/>
                                 <Text style={styles.name}>{item.strDrink}</Text>
                                 <Text style={styles.ingredients}>
                                     {item.strIngredient1}
@@ -80,66 +80,78 @@ function Rec() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 350,
-        alignItems: 'flex-end',
+        height: 300,
+        alignItems: 'flex-start',
     },
     header: {
         color: "#eee",
         fontSize: 35,
-        textAlign: 'center',
         position: 'relative',
-        top: 17,
-        right: 35,
+        top: 18,
+        left: 35,
         zIndex: 1,
-        fontFamily: 'PrataRegular',
+        fontFamily: "PrataRegular",
     },
     list: {
-        backgroundColor: "#345",
+        color: "#000",
+        backgroundColor: "#222",
         fontSize: 30,
         marginTop: 5,
-        marginRight: 25,
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
+        marginLeft: 20,
+        borderTopLeftRadius: 15,
+        borderBottomLeftRadius: 15,
         borderColor: 'white',
         borderTopWidth: .5,
-        borderRightWidth: .5,
+        borderLeftWidth: .5,
         borderBottomWidth: .5,
     },
     drinkbox: {
-        alignItems: "flex-start",
+        width: 150,
+        marginTop: 2,
+        marginLeft: 3,
     },
     img: {
-        height: 296,
-        width: 350,        
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
-    },
-    imggradient: {
-        height: 296,
-        width: 350,
+        height: 242,
+        width: 150,
+        borderRadius: 12,
         position: 'absolute',
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
-        borderColor: 'white',
-        borderTopWidth: .5,
-        borderRightWidth: .5,
-        borderBottomWidth: .5,
     },
     name: {
-        fontSize: 26,
-        fontFamily: 'PrataRegular',
-        color: 'white',
+        fontSize: 16,
+        margin: 4,
         position: 'absolute',
-        top: 230,
-        left: 10,
+        bottom: 45,
+        color: '#eee',
     },
     ingredients: {
-        fontSize: 14,
-        color: 'white',
+        fontSize: 12,
+        margin: 5,
+        color: '#ddd',
         position: 'absolute',
-        top: 265,
-        left: 10,
+        top: 190,
+    },
+    viewButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#0275d8',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 10,
+    },
+    addButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#28a745',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 45,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
     }
 });
 
-module.exports = Rec;
+module.exports = Popular;

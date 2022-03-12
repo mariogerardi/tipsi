@@ -4,27 +4,27 @@ import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 import axios from 'axios';
 
-const handleSubmit = async (e) => {
-    console.log(e)
-    try {
-        const response = await axios.post
-            (
-                'https://tipsi-backend.herokuapp.com/auth/signup',
-                e,
-            );
-        console.log(`response is ${response}`)
-        if (response.status === 201) {
-            alert(`You have created: ${JSON.stringify(response.data)}`);
-        }
-        navigation.push("Home", e)
-    } catch (err) {
-        console.log(err);
-    }
-};
-
 function RegisterForm() {
 
     const navigation = useNavigation();
+
+    const handleSubmit = async (e) => {
+        console.log(e)
+        try {
+            const response = await axios.post
+                (
+                    'https://tipsi-backend.herokuapp.com/auth/signup',
+                    e,
+                );
+            console.log(`response is ${response}`)
+            if (response.status === 201) {
+                alert(`You have created: ${JSON.stringify(response.data)}`);
+            }
+            navigation.push("Home", e)
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
     <Formik 
@@ -70,7 +70,7 @@ function RegisterForm() {
             />
             <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
             <Pressable 
-                onPress={() => {handleSubmit(); navigation.push("Home")}} 
+                onPress={() => {handleSubmit()}} 
                 style={styles.button}>
                 <Text style={styles.buttontext}>sign up</Text>
             </Pressable>
