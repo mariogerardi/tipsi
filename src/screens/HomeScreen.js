@@ -7,10 +7,13 @@ import Shot from '../components/landingtabs/misc/Shot';
 import Aperol from '../components/landingtabs/misc/Aperol';
 import RustyNail from '../components/landingtabs/misc/RustyNail';
 import Popular from '../components/landingtabs/misc/Popular';
+import Scotch from '../components/landingtabs/days/ScotchSunday';
 import Martini from '../components/landingtabs/days/MartiniMonday';
 import Tequila from '../components/landingtabs/days/TequilaTuesday';
 import Whiskey from '../components/landingtabs/days/WhiskeyWednesday';
 import Tropical from '../components/landingtabs/days/TropicalThursday';
+import Frozen from '../components/landingtabs/days/FrozenFriday';
+import Sober from '../components/landingtabs/days/SoberSaturday';
 import Lemon from '../components/landingtabs/ingredients/Lemon';
 import Coffee from '../components/landingtabs/ingredients/Coffee';
 import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
@@ -33,42 +36,51 @@ function Home({route}) {
         let day = d.getDay();
         if (day === 0) {
             return  <View>
+                        <Scotch />
                         <Aperol />
-                        <Aperol />
+                        <Coffee />
                     </View>;
         }
         if (day === 1) {
             return  <View>
                         <Martini />
                         <GinAndTonic />
+                        <AbsolutCitron />
                     </View>;
         }
         if (day === 2) {
             return  <View>
                         <Tequila />
                         <RustyNail />
+                        <SouthernComfort />
                     </View>;
         }
         if (day === 3) {
             return  <View>
                         <Whiskey />
                         <Aperol />
+                        <Lemon />
                     </View>;
         }
         if (day === 4) {
             return  <View>
+                        <Tropical />
+                        <Aperol />
+                        <Shot />
                     </View>;
         }
         if (day === 5) {
             return  <View>
-                        <Tropical />
+                        <Frozen />
                         <Aperol />
+                        <Shot />
                     </View>;
         }
         if (day === 6) {
             return  <View>
-                        <Tropical />
+                        <Sober />
                         <Aperol />
+                        <Shot />
                     </View>;
         }
     }
@@ -93,11 +105,6 @@ function Home({route}) {
             <Popular />
             <Rec />
             {DOTW()}
-            <AbsolutCitron />
-            <Lemon />
-            <SouthernComfort />
-            <Shot />
-            <Coffee />
             <View style={styles.endbox}>
                 <Text style={styles.end}>...that's all for now. check back tomorrow!</Text>
             </View>
