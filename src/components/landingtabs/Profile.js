@@ -5,26 +5,6 @@ import { useFonts } from 'expo-font';
 
 function Profile({route}) {
 
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
-
-    const getProfile = async () => {
-        try {
-            const response = await fetch('https://tipsi-backend.herokuapp.com/profile/profile');
-            const json = await response.json();
-            setData(json);
-            console.log(data)
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getProfile();
-    }, []);
-
     const [loaded] = useFonts({
         PrataRegular: require('../../../assets/fonts/Prata-Regular.ttf'),
     });
@@ -47,8 +27,8 @@ function Profile({route}) {
                 </View>
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {

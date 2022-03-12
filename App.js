@@ -1,6 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView } from 'react-native';
 import Home from './src/screens/HomeScreen.js';
 import Login from './src/screens/Login.js';
 import Register from './src/screens/Register.js';
