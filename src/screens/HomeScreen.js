@@ -1,18 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, Image, ImageBackground, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
 import Rec from '../components/landingtabs/misc/Rec'
 import COTD from '../components/landingtabs/misc/COTD';
 import Shot from '../components/landingtabs/misc/Shot';
 import Aperol from '../components/landingtabs/misc/Aperol';
+import RustyNail from '../components/landingtabs/misc/RustyNail';
 import Popular from '../components/landingtabs/misc/Popular';
 import Martini from '../components/landingtabs/days/MartiniMonday';
 import Tequila from '../components/landingtabs/days/TequilaTuesday';
 import Whiskey from '../components/landingtabs/days/WhiskeyWednesday';
+import Tropical from '../components/landingtabs/days/TropicalThursday';
 import Lemon from '../components/landingtabs/ingredients/Lemon';
 import Coffee from '../components/landingtabs/ingredients/Coffee';
 import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
 import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
+import GinAndTonic from '../components/landingtabs/ingredients/GinAndTonic';
 import { useFonts } from 'expo-font';
 
 function Home({route}) {
@@ -29,25 +32,44 @@ function Home({route}) {
         const d = new Date();
         let day = d.getDay();
         if (day === 0) {
-            return ;
+            return  <View>
+                        <Aperol />
+                        <Aperol />
+                    </View>;
         }
         if (day === 1) {
-            return <Martini />;
+            return  <View>
+                        <Martini />
+                        <GinAndTonic />
+                    </View>;
         }
         if (day === 2) {
-            return <Tequila />;
+            return  <View>
+                        <Tequila />
+                        <RustyNail />
+                    </View>;
         }
         if (day === 3) {
-            return ;
+            return  <View>
+                        <Whiskey />
+                        <Aperol />
+                    </View>;
         }
         if (day === 4) {
-            return ;
+            return  <View>
+                    </View>;
         }
         if (day === 5) {
-            return <Whiskey />;
+            return  <View>
+                        <Tropical />
+                        <Aperol />
+                    </View>;
         }
         if (day === 6) {
-            return ;
+            return  <View>
+                        <Tropical />
+                        <Aperol />
+                    </View>;
         }
     }
 
@@ -71,12 +93,14 @@ function Home({route}) {
             <Popular />
             <Rec />
             {DOTW()}
-            <Aperol />
             <AbsolutCitron />
             <Lemon />
             <SouthernComfort />
             <Shot />
             <Coffee />
+            <View style={styles.endbox}>
+                <Text style={styles.end}>...that's all for now. check back tomorrow!</Text>
+            </View>
         </ScrollView>
 	);
 }
@@ -139,7 +163,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         color: 'white',
-    }
+    },
+    endbox: {
+        alignItems: 'center',
+    },
+    end: {
+        color: "#eee",
+        width: 260,
+        fontSize: 24,
+        textAlign: 'center',
+        fontFamily: 'PrataRegular',
+        paddingVertical: 50
+    },
 });
 
 export default Home;
