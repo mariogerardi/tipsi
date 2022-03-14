@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, Image, ImageBackground, View, ScrollView, Dimensions } from 'react-native';
 import Header from '../components/Header';
 import { useFonts } from 'expo-font';
+
+import Dashboard from '../components/Dashboard';
+import Search from '../components/forms/CocktailSearch';
 
 import Rec from '../components/landingtabs/misc/Rec'
 import COTD from '../components/landingtabs/misc/COTD';
@@ -25,8 +28,9 @@ import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
 import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
 import GinAndTonic from '../components/landingtabs/ingredients/GinAndTonic';
 
-
 function Home({route}) {
+
+    const [value, setValue] = useState([]);
 
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -97,6 +101,7 @@ function Home({route}) {
             <ImageBackground style={styles.background} source={require("../../assets/ray.png")} />
             <ScrollView style={styles.container}>
                 <Header />
+                <Search />
                 <View>
                     <View style={styles.list}>
                         <View style={styles.content}>
@@ -110,6 +115,7 @@ function Home({route}) {
                         </View>
                     </View>
                 </View>
+                <Dashboard />
                 <COTD />
                 <Popular />
                 <Rec />
@@ -160,9 +166,9 @@ const styles = StyleSheet.create({
         width: "100%",
         marginRight: 40,
         paddingLeft: 5,
-        borderTopWidth: .5,
         borderColor: 'white',
         flexDirection: 'row',
+        backgroundColor: '#101316',
     },
     content: {
         alignItems: 'center',

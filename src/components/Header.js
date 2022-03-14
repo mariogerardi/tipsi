@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { useFonts } from 'expo-font';
-import { abs } from 'react-native-reanimated';
 
 function Home() {
 
