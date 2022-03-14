@@ -70,7 +70,6 @@ const Search = () => {
   
 	const ItemSeparatorView = () => {
 	  return (
-		// Flat List Item Separator
 		<View
 		  style={{
 			height: 0.5,
@@ -105,12 +104,6 @@ const Search = () => {
   };
   
 const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#101316',
-		borderTopWidth: .5,
-		borderColor: 'white',
-	  	height: 218,
-	},
 	itemStyle: {
 		color: '#eee',
 	  	padding: 10,

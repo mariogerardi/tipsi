@@ -26,7 +26,7 @@ function Cocktail({route}) {
 
     function emptyIngredient(props) {
         if (props) {
-            return (props + "\n");
+            return (props.toLowerCase() + "\n");
         }
     }
 
@@ -78,7 +78,7 @@ function Cocktail({route}) {
                                 {item.strInstructions}{"\n"}
                             </Text>
                             <Text style={styles.instructions}>
-                                Serve in a {item.strGlass}.
+                                Serve in a {item.strGlass.toLowerCase()}.
                             </Text>
                         </View>
                     )}

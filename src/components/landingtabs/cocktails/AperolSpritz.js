@@ -82,7 +82,7 @@ function Aperol() {
 const styles = StyleSheet.create({
     container: {
         height: 350,
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
     },
     header: {
         color: "#eee",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         position: 'relative',
         top: 17,
-        right: 35,
+        left: 35,
         zIndex: 1,
         fontFamily: 'PrataRegular',
     },

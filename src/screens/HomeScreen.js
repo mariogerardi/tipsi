@@ -3,7 +3,6 @@ import { StyleSheet, Text, Image, ImageBackground, View, ScrollView, Dimensions 
 import Header from '../components/Header';
 import { useFonts } from 'expo-font';
 
-import Dashboard from '../components/Dashboard';
 import Search from '../components/forms/CocktailSearch';
 
 import Rec from '../components/landingtabs/misc/Rec'
@@ -102,7 +101,7 @@ function Home({route}) {
             <ScrollView style={styles.container}>
                 <Header />
                 <Search />
-                <View>
+                <View style={styles.profilecontainer}>
                     <View style={styles.list}>
                         <View style={styles.content}>
                             <View>
@@ -115,7 +114,6 @@ function Home({route}) {
                         </View>
                     </View>
                 </View>
-                <Dashboard />
                 <COTD />
                 <Popular />
                 <Rec />
@@ -156,49 +154,25 @@ const styles = StyleSheet.create({
     profilepic: {
         height: 70,
         width: 70,
-        borderWidth: .5,
+        borderWidth: 1,
         borderRadius: 35,
         borderColor: 'white',
-        marginHorizontal: 15,
+        marginLeft: 5,
+        marginRight: 15,
     },
     list: {
-        height: 125,
+        height: 100,
         width: "100%",
         marginRight: 40,
         paddingLeft: 5,
-        borderColor: 'white',
         flexDirection: 'row',
         backgroundColor: '#101316',
+        borderColor: 'white',
+        borderBottomWidth: .5,
     },
     content: {
         alignItems: 'center',
         flexDirection: 'row',
-        marginVertical: 25,
-    },
-    viewButton: {
-        width: 140,
-        marginVertical: 5,
-        paddingVertical: 10,
-        backgroundColor: '#468',
-        borderRadius: 5,
-        position: 'absolute',
-        bottom: -60,
-        left: 12.5,
-    },
-    addButton: {
-        width: 175,
-        marginVertical: 5,
-        paddingVertical: 10,
-        backgroundColor: '#647',
-        borderRadius: 5,
-        position: 'absolute',
-        bottom: -60,
-        left: 167.5,
-    },
-    buttonText: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: 'white',
     },
     endbox: {
         alignItems: 'center',
