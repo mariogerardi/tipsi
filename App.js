@@ -4,6 +4,7 @@ import Login from './src/screens/Login.js';
 import Register from './src/screens/Register.js';
 import Cocktail from './src/screens/ShowCocktail.js';
 import Profile from './src/screens/ShowProfile.js';
+import Edit from './src/screens/EditProfile.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -36,6 +37,11 @@ function App() {
 				<Stack.Screen
         			name="Profile"
         			component={Profile}
+					options={{headerShown: false}}
+        			/>
+				<Stack.Screen
+        			name="Edit"
+        			component={Edit}
 					options={{headerShown: false}}
         			/>
 			</Stack.Navigator>

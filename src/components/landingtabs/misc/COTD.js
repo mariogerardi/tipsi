@@ -6,7 +6,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { IconButton, Colors } from 'react-native-paper';
 import axios from 'axios';
 
-function COTD(user) {
+function COTD() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);

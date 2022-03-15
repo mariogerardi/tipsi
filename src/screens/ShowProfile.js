@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, Text, Image, View, Pressable } from 'react-native';
+import { Alert, StyleSheet, SafeAreaView, Text, Image, View, Pressable } from 'react-native';
 import Nav from '../components/Nav';
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 function Profile({route}) {
 
-    console.log(route.params.cocktails)
+    let currentUser = route.params
+
+    console.log(currentUser)
     
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -17,6 +20,41 @@ function Profile({route}) {
     }
 
     const navigation = useNavigation();
+
+    function createTwoButtonAlert() {
+        Alert.alert(
+        "Delete Account",
+        "Are you sure you want to delete your account? This cannot be undone!",
+        [
+            {
+                text: "Cancel",
+                style: "cancel"
+            },
+            { 
+                text: "Delete", 
+                onPress: () => accountDeletion(),
+            }
+            ]
+        );
+    }
+
+    const accountDeletion = async (e) => {
+        try {
+            console.log(e)
+            const response = await axios.delete
+                (
+                    `https://tipsi-backend.herokuapp.com/profile/${currentUser._id}`,
+                    e,
+                );
+            console.log(response)
+            if (response.status === 201) {
+                alert(`You have created: ${JSON.stringify(response.data)}`);
+            }
+            navigation.popToTop()
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -30,19 +68,25 @@ function Profile({route}) {
                     <Text style={styles.ingredients}>email: {route.params.email}</Text>
                     <Text style={styles.ingredients}>age: {route.params.age}</Text>
                     <Text style={styles.header2}>settings:</Text>
-                    <Text style={styles.ingredients2}>log out</Text>
                     <Text style={styles.ingredients2}>edit your account</Text>
                     <Text style={styles.ingredients2}>delete your account</Text>
-                    <Pressable onPress={() => navigation.popToTop()}>
+                    <Text style={styles.ingredients2}>log out</Text>
+                    <Pressable onPress={() => navigation.push("Edit", {user: currentUser})}>
                         <Image 
                             style={styles.iconback}
-                            source={require("../../assets/logout.png")}
+                            source={require("../../assets/profile.png")}
+                        />
+                    </Pressable>
+                    <Pressable onPress={() => createTwoButtonAlert()}>
+                        <Image 
+                            style={styles.iconback}
+                            source={require("../../assets/delete.png")}
                         />
                     </Pressable>
                     <Pressable onPress={() => navigation.popToTop()}>
                         <Image 
                             style={styles.iconback}
-                            source={require("../../assets/profile.png")}
+                            source={require("../../assets/logout.png")}
                         />
                     </Pressable>
                 </View>
@@ -74,7 +118,7 @@ const styles = StyleSheet.create({
         zIndex: 2,
         fontFamily: 'PrataRegular',
         position: 'absolute',
-        top: 530,
+        top: 515,
         maxWidth: 350,
     },
     list: {
@@ -109,15 +153,15 @@ const styles = StyleSheet.create({
         color: '#ccc',
         fontSize: 20,
         position: 'relative',
-        marginVertical: 7,
+        marginVertical: 9,
         marginHorizontal: 50,
-        top: 145,
+        top: 125,
     },
     iconback: {
-        backgroundColor: '#101316',
-        top: 28,
+        backgroundColor: 'transparent',
+        marginVertical: 3,
         width: 35,
-        height: 40,
+        height: 35,
         left: 5,
         zIndex: 1,
     },

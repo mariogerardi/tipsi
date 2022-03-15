@@ -2,8 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
 import LoginForm from '../components/forms/Signin';
+import { useNavigation} from '@react-navigation/native';
 
-function Login({navigation, route}) {
+function Login() {
+
+    const navigation = useNavigation();
 
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
