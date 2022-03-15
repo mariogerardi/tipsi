@@ -53,7 +53,7 @@ function Cocktail({route}) {
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <View style={styles.drinkbox}>
+                        <View style={styles.drinkbox}>       
                             <Text style={styles.header}>{route.params.name}</Text>
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                             <Image style={styles.imggradient} source={require("../../assets/image-overlay.png")}/>
@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
     },
     header: {
         color: "#eee",
-        fontSize: 32,
+        fontSize: 30,
         alignSelf: 'center',
         textAlign: 'center',
         zIndex: 1,
         fontFamily: 'PrataRegular',
         position: 'absolute',
-        top: 240,
-        maxWidth: 350,
+        top: 280,
+        maxWidth: 340,
     },
     list: {
         color: "black",
@@ -118,13 +118,15 @@ const styles = StyleSheet.create({
         marginTop: 0,
     },
     img: {
-        height: 350,
+        height: 400,
         width: '100%',
+        zIndex: 0,
     },
     imggradient: {
-        height: 350,
+        height: 400,
         width: '100%',
         position: 'absolute',
+        zIndex: 0,
     },
     ingredients: {
         fontSize: 15,
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         marginHorizontal: 8,
         marginRight: 15,
-    }
+    },
 });
 
 export default Cocktail;

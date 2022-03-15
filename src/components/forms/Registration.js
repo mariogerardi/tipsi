@@ -27,7 +27,10 @@ function RegisterForm() {
 
     return (
     <Formik 
-        initialValues={{ email: '',  }}
+        initialValues={{ 
+            email: '', 
+            image: 'https://www.theiwsr.com/wp-content/uploads/US-Bartender-cocktail-innovation-700x525px-600x450.jpg',
+        }}
         onSubmit={values => handleSubmit(values)}
     >
     {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -66,6 +69,12 @@ function RegisterForm() {
                 value={values.age}
                 keyboardType='numeric'
                 maxLength={2}
+            />
+            <TextInput 
+                style={styles.noinput}
+                onChangeText={handleChange('image')}
+                onBlur={handleBlur('image')}
+                value={values.age}
             />
             <Text style={styles.note}>You must be at least 21 years of age to use tipsi.</Text>
             <Pressable 
@@ -118,6 +127,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderRadius: 3,
         marginTop: 15
+    },
+    noinput: {
+        display: 'none',
     },
     button: {
         width: 260,

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, Image, ImageBackground, View, ScrollView, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, Image, ImageBackground, View, TouchableWithoutFeedback, ScrollView, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { useFonts } from 'expo-font';
 
@@ -29,7 +30,25 @@ import GinAndTonic from '../components/landingtabs/ingredients/GinAndTonic';
 
 function Home({route}) {
 
-    const [value, setValue] = useState([]);
+    const [data, setData] = useState([]);
+
+    const navigation = useNavigation();
+
+    const getUser = async () => {
+        try {
+            const response = await fetch(`https://tipsi-backend.herokuapp.com/profile/${route.params.username}`);
+            const json = await response.json();
+            setData(json);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -103,18 +122,20 @@ function Home({route}) {
                 <Search />
                 <View style={styles.profilecontainer}>
                     <View style={styles.list}>
+                    <TouchableWithoutFeedback onPress={() => navigation.push("Profile", data)}>
                         <View style={styles.content}>
                             <View>
-                                <Image style={styles.profilepic} source={require("../../assets/orange.jpeg")}></Image>
+                                <Image style={styles.profilepic} source={{ uri: data.image }}></Image>
                             </View>
                             <View>
                                 <Text style={styles.header}>good to see you,</Text>
-                                <Text style={styles.header}>{route.params.username}</Text>
+                                <Text style={styles.header}>{data.username}</Text>
                             </View> 
                         </View>
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <COTD />
+                <COTD user={data}/>
                 <Popular />
                 <Rec />
                 {DOTW()}

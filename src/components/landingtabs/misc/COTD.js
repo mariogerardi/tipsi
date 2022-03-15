@@ -3,8 +3,10 @@ import { StyleSheet, Text, Image, View, Pressable, FlatList, ActivityIndicator }
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { IconButton, Colors } from 'react-native-paper';
+import axios from 'axios';
 
-function COTD() {
+function COTD(user) {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
@@ -21,8 +23,28 @@ function COTD() {
         }
     }
 
+    let newArray = user.user.cocktails
+
+    const like = async (e) => {
+        try {
+            newArray.push(e);
+            console.log(newArray)
+            const res = await axios.put
+                (
+                    `https://tipsi-backend.herokuapp.com/profile/${user.user._id}`,
+                    newArray,
+                );
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         getCOTD();
+    }, []);
+
+    useEffect(() => {
+        like();
     }, []);
 
     function emptyIngredient(props) {
@@ -37,7 +59,7 @@ function COTD() {
         }
     }
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     const [loaded] = useFonts({
         PrataRegular: require('../../../../assets/fonts/Prata-Regular.ttf'),
@@ -59,19 +81,29 @@ function COTD() {
                     data={data.drinks}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
-                        <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
-                            <View style={styles.drinkbox}>
-                                <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                                <Image style={styles.imggradient} source={require("../../../../assets/image-overlay.png")}/>
-                                <Text style={styles.name}>{item.strDrink}</Text>
-                                <Text style={styles.ingredients}>
-                                    {item.strIngredient1}
-                                    {emptyIngredient(item.strIngredient2)}
-                                    {emptyIngredient(item.strIngredient3)}
-                                    {moreThanThreeIngredients(item.strIngredient4)}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        <View>
+                            <IconButton
+                                icon="plus"
+                                color={Colors.white}
+                                size={35}
+                                onPress={() => like(item.idDrink)}
+                                style={styles.add}
+                            />                                
+                            <TouchableWithoutFeedback onPress={() => navigation.push("Show", { idDrink: item.idDrink, name: item.strDrink })}>
+                                <View style={styles.drinkbox}>
+                                    <Image style={styles.img} source={{ uri: item.strDrinkThumb }} />
+                                    <Image style={styles.imggradient} source={require("../../../../assets/image-overlay.png")} />
+                                    <Text style={styles.name}>{item.strDrink}</Text>
+                                    <Text style={styles.ingredients}>
+                                        {item.strIngredient1}
+                                        {emptyIngredient(item.strIngredient2)}
+                                        {emptyIngredient(item.strIngredient3)}
+                                        {moreThanThreeIngredients(item.strIngredient4)}
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            
+                        </View>
                     )}
                 />
             )}
@@ -96,8 +128,6 @@ const styles = StyleSheet.create({
         fontFamily: 'PrataRegular',
     },
     list: {
-        backgroundColor: "#345",
-        fontSize: 30,
         marginTop: 5,
         marginRight: 25,
         borderTopRightRadius: 10,
@@ -112,9 +142,10 @@ const styles = StyleSheet.create({
     },
     img: {
         height: 296,
-        width: 350,        
+        width: 350,
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
+        zIndex: 0,
     },
     imggradient: {
         height: 296,
@@ -141,6 +172,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 265,
         left: 10,
+    },
+    add: {
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+        height: 60,
+        width: 60,
+        zIndex: 2,
     }
 });
 

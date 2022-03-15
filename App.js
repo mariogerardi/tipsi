@@ -3,6 +3,7 @@ import Home from './src/screens/HomeScreen.js';
 import Login from './src/screens/Login.js';
 import Register from './src/screens/Register.js';
 import Cocktail from './src/screens/ShowCocktail.js';
+import Profile from './src/screens/ShowProfile.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -30,6 +31,11 @@ function App() {
 				<Stack.Screen
         			name="Show"
         			component={Cocktail}
+					options={{headerShown: false}}
+        			/>
+				<Stack.Screen
+        			name="Profile"
+        			component={Profile}
 					options={{headerShown: false}}
         			/>
 			</Stack.Navigator>

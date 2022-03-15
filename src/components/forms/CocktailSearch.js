@@ -90,7 +90,7 @@ const Search = () => {
 			searchIcon={{ size: 24 }}
 			onChangeText={(text) => searchFilterFunction(text)}
 			onClear={(text) => searchFilterFunction('')}
-			placeholder="search..."
+			placeholder="search cocktails..."
 			value={search}
 		  />
 		  <FlatList
