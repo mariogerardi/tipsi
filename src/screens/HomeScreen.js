@@ -38,11 +38,10 @@ function Home({route}) {
         try {
             const response = await fetch(`https://tipsi-backend.herokuapp.com/profile/${route.params.username}`);
             const json = await response.json();
+            console.log(json);
             setData(json);
         } catch (error) {
             console.error(error);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -194,6 +193,7 @@ const styles = StyleSheet.create({
     content: {
         alignItems: 'center',
         flexDirection: 'row',
+        marginBottom: 8,
     },
     endbox: {
         alignItems: 'center',

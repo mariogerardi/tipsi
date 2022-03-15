@@ -23,29 +23,30 @@ function COTD(user) {
         }
     }
 
-    let newArray = user.user.cocktails
-
-    const like = async (e) => {
-        try {
-            newArray.push(e);
-            console.log(newArray)
-            const res = await axios.put
-                (
-                    `https://tipsi-backend.herokuapp.com/profile/${user.user._id}`,
-                    newArray,
-                );
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    // const like = async (e) => {
+    //     try {
+    //         const response = await axios.put
+    //             (
+    //                 `https://tipsi-backend.herokuapp.com/profile/${user.user._id}`,
+    //                 {"cocktails": [{"idDrink": e}]},
+    //             );
+    //         console.log(`response is ${response}`)
+    //         if (response.status === 201) {
+    //             alert(`You have created: ${JSON.stringify(response.data)}`);
+    //         }
+    //         console.log("This is my response:" + res)
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
 
     useEffect(() => {
         getCOTD();
     }, []);
 
-    useEffect(() => {
-        like();
-    }, []);
+    // useEffect(() => {
+    //     like();
+    // }, []);
 
     function emptyIngredient(props) {
         if (props) {
@@ -82,13 +83,13 @@ function COTD(user) {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <View>
-                            <IconButton
+                            {/* <IconButton
                                 icon="plus"
                                 color={Colors.white}
                                 size={35}
                                 onPress={() => like(item.idDrink)}
                                 style={styles.add}
-                            />                                
+                            />                                 */}
                             <TouchableWithoutFeedback onPress={() => navigation.push("Show", { idDrink: item.idDrink, name: item.strDrink })}>
                                 <View style={styles.drinkbox}>
                                     <Image style={styles.img} source={{ uri: item.strDrinkThumb }} />
