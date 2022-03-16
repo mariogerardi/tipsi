@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, Image, View, Pressable, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-function GinAndTonic() {
+function Penicillin() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getGinAndTonic = async () => {
+    const getPenicillin = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=gin,tonic_water');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=17829');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -21,7 +22,7 @@ function GinAndTonic() {
     }
 
     useEffect(() => {
-        getGinAndTonic();
+        getPenicillin();
     }, []);
 
     function emptyIngredient(props) {
@@ -48,7 +49,7 @@ function GinAndTonic() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>gin and tonic</Text>
+            <Text style={styles.header}>hangover cure</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
@@ -59,9 +60,9 @@ function GinAndTonic() {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
-                            <View style={styles.drinkbox} >
+                            <View style={styles.drinkbox}>
                                 <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
-                                <Image style={styles.img} source={require("../../../../assets/image-overlay.png")}/>
+                                <Image style={styles.imggradient} source={require("../../../../assets/image-overlay.png")}/>
                                 <Text style={styles.name}>{item.strDrink}</Text>
                                 <Text style={styles.ingredients}>
                                     {item.strIngredient1}
@@ -80,51 +81,66 @@ function GinAndTonic() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 300,
+        height: 350,
         alignItems: 'flex-start',
     },
     header: {
         color: "#eee",
         fontSize: 35,
+        textAlign: 'center',
         position: 'relative',
-        top: 18,
-        left: 35,
+        top: 17,
+        left: 95,
         zIndex: 1,
-        fontFamily: "PrataRegular",
+        fontFamily: 'PrataRegular',
     },
     list: {
-        color: "#000",
-        backgroundColor: "#222",
+        backgroundColor: "#eee",
         fontSize: 30,
         marginTop: 5,
-        marginLeft: 20,
-        borderTopLeftRadius: 15,
-        borderBottomLeftRadius: 15,
+        marginRight: 25,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
         borderColor: 'white',
         borderTopWidth: .5,
-        borderLeftWidth: .5,
+        borderRightWidth: .5,
         borderBottomWidth: .5,
     },
     drinkbox: {
-        width: 150,
-        marginTop: 2,
-        marginLeft: 3,
-        alignItems: 'center'
+        alignItems: "flex-start",
     },
     img: {
-        height: 242,
-        width: 150,
-        borderRadius: 12,
+        height: 296,
+        width: 350,        
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+    },
+    imggradient: {
+        height: 296,
+        width: 350,
         position: 'absolute',
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        borderColor: 'white',
+        borderTopWidth: .5,
+        borderRightWidth: .5,
+        borderBottomWidth: .5,
     },
     name: {
-        fontSize: 18,
-        margin: 3,
+        fontSize: 26,
+        fontFamily: 'PrataRegular',
+        color: 'white',
         position: 'absolute',
-        bottom: 5,
-        textAlign: 'center',
-        color: '#eee',
+        top: 230,
+        left: 10,
+    },
+    ingredients: {
+        fontSize: 14,
+        color: 'white',
+        position: 'absolute',
+        top: 265,
+        left: 10,
     }
 });
 
-module.exports = GinAndTonic;
+module.exports = Penicillin;

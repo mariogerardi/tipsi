@@ -15,22 +15,22 @@ function Whiskey() {
     
     const getWhiskey = async () => {
         try {
-            const response1 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=whisky');
+            const response1 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=whisky');
             const json1 = await response1.json();
             setData1(json1);
-            const response2 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=whiskey');
+            const response2 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=whiskey');
             const json2 = await response2.json();
             setData2(json2);
-            const response3 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=rye_whiskey');
+            const response3 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=rye_whiskey');
             const json3 = await response3.json();
             setData3(json3);
-            const response4 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=irish_whiskey');
+            const response4 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=irish_whiskey');
             const json4 = await response4.json();
             setData4(json4);
-            const response5 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=blended_whiskey');
+            const response5 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=blended_whiskey');
             const json5 = await response5.json();
             setData5(json5);
-            const response6 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=tennessee_whiskey');
+            const response6 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=tennessee_whiskey');
             const json6 = await response6.json();
             setData6(json6);
         } catch (error) {

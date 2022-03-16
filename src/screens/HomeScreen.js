@@ -10,9 +10,14 @@ import Rec from '../components/landingtabs/misc/Rec'
 import COTD from '../components/landingtabs/misc/COTD';
 import Shot from '../components/landingtabs/misc/Shot';
 import Popular from '../components/landingtabs/misc/Popular';
+import Random from '../components/landingtabs/misc/Random';
+import Brunch from '../components/landingtabs/misc/Brunch';
+import Hot from '../components/landingtabs/misc/Hot'
 
 import Aperol from '../components/landingtabs/cocktails/AperolSpritz';
 import RustyNail from '../components/landingtabs/cocktails/RustyNail';
+import FruitPunch from '../components/landingtabs/cocktails/PlanterPunch';
+import Penicillin from '../components/landingtabs/cocktails/Penicillin';
 
 import Scotch from '../components/landingtabs/days/ScotchSunday';
 import Martini from '../components/landingtabs/days/MartiniMonday';
@@ -27,6 +32,8 @@ import Coffee from '../components/landingtabs/ingredients/Coffee';
 import AbsolutCitron from '../components/landingtabs/ingredients/AbsolutCitron';
 import SouthernComfort from '../components/landingtabs/ingredients/SouthernComfort';
 import GinAndTonic from '../components/landingtabs/ingredients/GinAndTonic';
+import Milky from '../components/landingtabs/ingredients/Milky';
+import Egg from '../components/landingtabs/ingredients/Egg';
 
 function Home({route}) {
 
@@ -67,6 +74,9 @@ function Home({route}) {
                         <Scotch />
                         <Aperol />
                         <Coffee />
+                        <Penicillin />
+                        <Milky />
+                        <RustyNail />
                     </View>;
         }
         if (day === 1) {
@@ -74,6 +84,9 @@ function Home({route}) {
                         <Martini />
                         <Aperol />
                         <AbsolutCitron />
+                        <FruitPunch />
+                        <Milky />
+                        <RustyNail />
                     </View>;
         }
         if (day === 2) {
@@ -81,20 +94,31 @@ function Home({route}) {
                         <Tequila />
                         <RustyNail />
                         <SouthernComfort />
+                        <RustyNail />
+                        <Hot />
+                        <FruitPunch />
                     </View>;
         }
         if (day === 3) {
             return  <View>
                         <Whiskey />
+                        <FruitPunch />
+                        <Brunch />
                         <Aperol />
                         <GinAndTonic />
+                        <RustyNail />
+                        <Coffee />
+                        <Penicillin />
                     </View>;
         }
         if (day === 4) {
             return  <View>
                         <Tropical />
+                        <FruitPunch />
+                        <SouthernComfort />
                         <Aperol />
                         <Lemon />
+                        <Penicillin />
                     </View>;
         }
         if (day === 5) {
@@ -102,13 +126,19 @@ function Home({route}) {
                         <Frozen />
                         <Aperol />
                         <Shot />
+                        <FruitPunch />
+                        <Milky />
+                        <RustyNail />
                     </View>;
         }
         if (day === 6) {
             return  <View>
                         <Sober />
-                        <Aperol />
+                        <Penicillin />
                         <Shot />
+                        <RustyNail />
+                        <AbsolutCitron />
+                        <Aperol />
                     </View>;
         }
     }
@@ -138,6 +168,7 @@ function Home({route}) {
                 <Popular />
                 <Rec />
                 {DOTW()}
+                <Random />
                 <View style={styles.endbox}>
                     <Text style={styles.end}>...that's all for now. check back tomorrow!</Text>
                 </View>

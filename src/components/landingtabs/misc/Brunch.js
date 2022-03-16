@@ -3,14 +3,14 @@ import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, Acti
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-function GinAndTonic() {
+function Brunch() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getGinAndTonic = async () => {
+    const getBrunch = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=gin,tonic_water');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?g=champagne_flute');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -21,7 +21,7 @@ function GinAndTonic() {
     }
 
     useEffect(() => {
-        getGinAndTonic();
+        getBrunch();
     }, []);
 
     function emptyIngredient(props) {
@@ -48,7 +48,7 @@ function GinAndTonic() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>gin and tonic</Text>
+            <Text style={styles.header}>boozy brunch</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
@@ -127,4 +127,5 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = GinAndTonic;
+
+module.exports = Brunch;

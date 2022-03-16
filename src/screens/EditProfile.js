@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Pressable, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, SafeAreaView } from 'react-native';
 import Nav from '../components/Nav';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -47,9 +47,8 @@ function Edit({ route }) {
                     initialValues={{ 
                     username: route.params.user.username,
                     image: route.params.user.image,
-                    email: route.params.user.email, 
-                    image: 'https://www.theiwsr.com/wp-content/uploads/US-Bartender-cocktail-innovation-700x525px-600x450.jpg',
-                    }}
+                    email: route.params.user.email
+                }}
                     onSubmit={values => handleSubmit(values)}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values }) => (

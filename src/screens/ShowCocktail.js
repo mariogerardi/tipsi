@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, Text, Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, Image, View, Share, TouchableWithoutFeedback, Pressable, FlatList, ActivityIndicator } from 'react-native';
 import Nav from '../components/Nav';
 import { useFonts } from 'expo-font';
 
@@ -44,6 +44,25 @@ function Cocktail({route}) {
         return null;
     }
 
+    const onShare = async (props) => {
+        try {
+            console.log(props)
+          const result = await Share.share({
+            title: 'tipsi',
+            message: `Check out the ${route.params.name} cocktail on tipsi!`,
+            url: props
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+            } else {
+            }
+          } else if (result.action === Share.dismissedAction) {
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      };
+
     return (
         <SafeAreaView style={styles.container}>
             <Nav />
@@ -54,9 +73,16 @@ function Cocktail({route}) {
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <View style={styles.drinkbox}>       
-                            <Text style={styles.header}>{route.params.name}</Text>
+                            <Text style={styles.header}>{route.params.name}</Text>            
                             <Image style={styles.img} source={{ uri: item.strDrinkThumb }}/>
                             <Image style={styles.imggradient} source={require("../../assets/image-overlay.png")}/>
+                            <TouchableWithoutFeedback
+                                onPress={() => onShare(item.strDrinkThumb)}>
+                                <Image
+                                    style={styles.share}
+                                    source={require("../../assets/share.png")}
+                                />
+                            </TouchableWithoutFeedback>
                             <Text style={styles.ingredients}>
                                 {emptyMeasurement(item.strMeasure1)}{emptyIngredient(item.strIngredient1)}
                                 {emptyMeasurement(item.strMeasure2)}{emptyIngredient(item.strIngredient2)}
@@ -127,6 +153,15 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         zIndex: 0,
+    },
+    share: {
+        zIndex: 2,
+        width: 50,
+        height: 50,
+        position: 'relative',
+        bottom: 390,
+        left: 285,
+        marginBottom: -45,
     },
     ingredients: {
         fontSize: 15,

@@ -13,7 +13,7 @@ function COTD() {
 
     const getCOTD = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=17074');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=178337');
             const json = await response.json();
             setData(json);
         } catch (error) {

@@ -3,16 +3,36 @@ import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, Acti
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-function GinAndTonic() {
+function Milky() {
 
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
-
-    const getGinAndTonic = async () => {
+    const [data1, setData1] = useState([]);
+    const [data2, setData2] = useState([]);
+    const [data3, setData3] = useState([]);
+    const [data4, setData4] = useState([]);
+    const [data5, setData5] = useState([]);
+    const [data6, setData6] = useState([]);
+    
+    const getMilky = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=gin,tonic_water');
-            const json = await response.json();
-            setData(json);
+            const response1 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=coconut_milk');
+            const json1 = await response1.json();
+            setData1(json1);
+            const response2 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=light_cream');
+            const json2 = await response2.json();
+            setData2(json2);
+            const response3 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=heavy_cream');
+            const json3 = await response3.json();
+            setData3(json3);
+            const response4 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=half-and-half');
+            const json4 = await response4.json();
+            setData4(json4);
+            const response5 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=cream');
+            const json5 = await response5.json();
+            setData5(json5);
+            const response6 = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=milk');
+            const json6 = await response6.json();
+            setData6(json6);
         } catch (error) {
             console.error(error);
         } finally {
@@ -21,7 +41,7 @@ function GinAndTonic() {
     }
 
     useEffect(() => {
-        getGinAndTonic();
+        getMilky();
     }, []);
 
     function emptyIngredient(props) {
@@ -48,14 +68,14 @@ function GinAndTonic() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>gin and tonic</Text>
+            <Text style={styles.header}>creamy goodness</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
                     initialNumToRender={5}
                     maxToRenderPerBatch={10}
                     style={styles.list}
-                    data={data.drinks}
+                    data={data5.drinks.concat(data4.drinks).concat(data3.drinks).concat(data2.drinks).concat(data1.drinks)}
                     keyExtractor={({ id }) => id}
                     renderItem={({ item, index }) => (
                         <TouchableWithoutFeedback onPress={() => navigation.push("Show", {idDrink: item.idDrink, name: item.strDrink})}>
@@ -127,4 +147,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = GinAndTonic;
+module.exports = Milky;

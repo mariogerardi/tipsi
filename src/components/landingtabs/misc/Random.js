@@ -3,14 +3,14 @@ import { StyleSheet, Text, Image, View, FlatList, TouchableWithoutFeedback, Acti
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-function GinAndTonic() {
+function Random() {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getGinAndTonic = async () => {
+    const getRandom = async () => {
         try {
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=gin,tonic_water');
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php');
             const json = await response.json();
             setData(json);
         } catch (error) {
@@ -21,7 +21,7 @@ function GinAndTonic() {
     }
 
     useEffect(() => {
-        getGinAndTonic();
+        getRandom();
     }, []);
 
     function emptyIngredient(props) {
@@ -48,7 +48,7 @@ function GinAndTonic() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>gin and tonic</Text>
+            <Text style={styles.header}>test your luck</Text>
             {isLoading ? <ActivityIndicator /> : (
                 <FlatList
                     horizontal
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
         width: 150,
         marginTop: 2,
         marginLeft: 3,
-        alignItems: 'center'
     },
     img: {
         height: 242,
@@ -118,13 +117,41 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     name: {
-        fontSize: 18,
-        margin: 3,
+        fontSize: 16,
+        margin: 4,
         position: 'absolute',
-        bottom: 5,
-        textAlign: 'center',
+        bottom: 45,
         color: '#eee',
+    },
+    ingredients: {
+        fontSize: 12,
+        margin: 5,
+        color: '#ddd',
+        position: 'absolute',
+        top: 190,
+    },
+    viewButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#0275d8',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 10,
+    },
+    addButton: {
+        width: 125,
+        marginVertical: 5,
+        paddingVertical: 5,
+        backgroundColor: '#28a745',
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 45,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
     }
 });
 
-module.exports = GinAndTonic;
+module.exports = Random;

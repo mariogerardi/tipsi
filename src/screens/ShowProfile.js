@@ -8,8 +8,6 @@ import axios from 'axios';
 function Profile({route}) {
 
     let currentUser = route.params
-
-    console.log(currentUser)
     
     const [loaded] = useFonts({
         PrataRegular: require('../../assets/fonts/Prata-Regular.ttf'),
@@ -68,26 +66,32 @@ function Profile({route}) {
                     <Text style={styles.ingredients}>email: {route.params.email}</Text>
                     <Text style={styles.ingredients}>age: {route.params.age}</Text>
                     <Text style={styles.header2}>settings:</Text>
-                    <Text style={styles.ingredients2}>edit your account</Text>
-                    <Text style={styles.ingredients2}>delete your account</Text>
-                    <Text style={styles.ingredients2}>log out</Text>
-                    <Pressable onPress={() => navigation.push("Edit", {user: currentUser})}>
+                    <Pressable 
+                        style={styles.pressable}
+                        onPress={() => navigation.push("Edit", {user: currentUser})}>
                         <Image 
                             style={styles.iconback}
                             source={require("../../assets/profile.png")}
                         />
+                        <Text style={styles.ingredients2}>edit your account</Text>
                     </Pressable>
-                    <Pressable onPress={() => createTwoButtonAlert()}>
+                    <Pressable 
+                        style={styles.pressable}
+                        onPress={() => createTwoButtonAlert()}>
                         <Image 
                             style={styles.iconback}
                             source={require("../../assets/delete.png")}
                         />
+                        <Text style={styles.ingredients2}>delete your account</Text>
                     </Pressable>
-                    <Pressable onPress={() => navigation.popToTop()}>
+                    <Pressable 
+                        style={styles.pressable}
+                        onPress={() => navigation.popToTop()}>
                         <Image 
                             style={styles.iconback}
                             source={require("../../assets/logout.png")}
                         />
+                        <Text style={styles.ingredients2}>log out</Text>
                     </Pressable>
                 </View>
             </View>
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
         zIndex: 2,
         fontFamily: 'PrataRegular',
         position: 'absolute',
-        top: 515,
+        top: 490,
         maxWidth: 350,
     },
     list: {
@@ -146,24 +150,26 @@ const styles = StyleSheet.create({
         color: '#ccc',
         fontSize: 20,
         position: 'relative',
-        marginVertical: 2,
         top: 55,
     },
     ingredients2: {
         color: '#ccc',
         fontSize: 20,
         position: 'relative',
-        marginVertical: 9,
         marginHorizontal: 50,
-        top: 125,
+        bottom: 30,
     },
     iconback: {
         backgroundColor: 'transparent',
-        marginVertical: 3,
         width: 35,
         height: 35,
         left: 5,
         zIndex: 1,
+    },
+    pressable: {
+        top: 135,
+        right: 10,
+        marginTop: -15,
     },
 });
 
